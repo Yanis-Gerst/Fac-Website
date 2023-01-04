@@ -1,4 +1,3 @@
-.DS_Store
-dist/
-coverage/
-.parcel-cache/
+.parcel-cache 
+dist
+DS_STORE
