@@ -1,18 +1,18 @@
+@import url("./Css/main.css");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base
-{
-    :root {
-        --main-text-color: #333;
-        --secondary-text-color: #68717A;
-        --primary-color: #0D6EFD;
-        --secondary-color: #17A2B8;
-        --tertiary-color: #333;
-    }
+:root {
+    --main-text-color: #333;
+    --secondary-text-color: #68717A;
+    --primary-color: #0D6EFD;
+    --secondary-color: #17A2B8;
+    --tertiary-color: #333;
 }
+
+
+body, html {
+    overflow-x: hidden;
+}
+
 
 @font-face {
     font-family: "Inter";
@@ -32,4 +32,5 @@ body {
     font-family: "Inter";
     color: #333;
 }
+
 

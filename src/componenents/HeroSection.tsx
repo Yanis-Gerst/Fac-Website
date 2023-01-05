@@ -13,27 +13,25 @@ const HeroSection = () => {
 
   return (
     <>
-      <h1 className="hero-header mx-12 mt-14 mb-8 " ref={heroHeader}>
+      <h1 className="hero-header" ref={heroHeader}>
         Lorem ipsum dolor sit amet,{" "}
-        <span className="text-primary">consectetur</span> adipiscing elit.
+        <span className="text--color-primary">consectetur</span> adipiscing
+        elit.
       </h1>
 
-      <div
-        className="flex flex-col mx-auto gap-8 font-extrabold"
-        ref={heroSection}
-      >
-        <p className="base-text">
+      <div className="hero-section" ref={heroSection}>
+        <p className="text--base-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis. Class
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
           inceptos himenaeos.
         </p>
-        <Button type="primary" specificStyle="w-full">
-          <p className="header6 w-fit">Commencer</p>
+        <Button type="primary">
+          <p className="text--header6">Commencer</p>
         </Button>
 
-        <Button type="tertiary-invert" specificStyle="w-full">
-          <p className="header6 w-fit">👇 Découvrir Name</p>
+        <Button type="tertiary-invert">
+          <p className="text--header6">👇 Découvrir Name</p>
         </Button>
 
         <img src={heroIllustration} />

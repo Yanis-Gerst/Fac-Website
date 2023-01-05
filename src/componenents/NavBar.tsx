@@ -1,19 +1,12 @@
 import React from "react";
 
 const NavBar = () => {
-  const talwindPaddingValue = 12;
   return (
     <>
-      <header
-        className={
-          "w-full px-" +
-          talwindPaddingValue +
-          " flex flex-row justify-between pr-28 items-center py-5 relative"
-        }
-      >
-        <p className="header5">Name</p>
-        <nav className="w-1/3">
-          <ul className="flex flex-row justify-between small-text text-color-sub">
+      <header className="nav-bar">
+        <p className="text--header5">Name</p>
+        <nav className="nav-bar__naviguation">
+          <ul className="text--small-text">
             <li>
               <p>Home</p>
             </li>
@@ -26,8 +19,9 @@ const NavBar = () => {
           </ul>
         </nav>
       </header>
-      <div className={"w-full px-" + talwindPaddingValue}>
-        <div className="w-full h-px bg-gray-200" />
+
+      <div className="divider-wrapper">
+        <div className="divider-wrapper__line" />
       </div>
     </>
   );
