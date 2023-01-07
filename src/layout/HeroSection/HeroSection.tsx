@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
-import Button from "./Button";
-import heroIllustration from "./../../assets/heroIllustration.svg";
+import Button from "../../componenents/Button/Button";
+import heroIllustration from "./../../../assets/heroIllustration.svg";
 
 const HeroSection = () => {
   const heroSection = useRef<HTMLDivElement>(null);

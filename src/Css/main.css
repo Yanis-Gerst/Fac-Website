@@ -129,14 +129,19 @@ table {
   border-spacing: 0;
 }
 
-.text--extra-header4 {
+.text--header1 {
   font-weight: bold;
-  font-size: 48px;
+  font-size: 72px;
 }
 
-.text--semi-header4 {
-  font-size: 48px;
+.text--semi-header1 {
   font-weight: 600;
+  font-size: 72px;
+}
+
+.text--extra-header1 {
+  font-weight: 900;
+  font-size: 72px;
 }
 
 .text--header2 {
@@ -144,8 +149,58 @@ table {
   font-size: 64px;
 }
 
+.text--semi-header2 {
+  font-weight: 600;
+  font-size: 64px;
+}
+
+.text--extra-header2 {
+  font-weight: 900;
+  font-size: 64px;
+}
+
+.text--header3 {
+  font-weight: bold;
+  font-size: 56px;
+}
+
+.text--semi-header3 {
+  font-weight: 600;
+  font-size: 56px;
+}
+
+.text--extra-header3 {
+  font-weight: 900;
+  font-size: 56px;
+}
+
+.text--header4 {
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.text--semi-header4 {
+  font-weight: 600;
+  font-size: 48px;
+}
+
+.text--extra-header4 {
+  font-weight: 900;
+  font-size: 48px;
+}
+
 .text--header5 {
   font-weight: bold;
+  font-size: 40px;
+}
+
+.text--semi-header5 {
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.text--extra-header5 {
+  font-weight: 900;
   font-size: 40px;
 }
 
@@ -154,15 +209,18 @@ table {
   font-size: 32px;
 }
 
-.text--base-text {
+.text--semi-header6 {
+  font-weight: 600;
   font-size: 32px;
-  font-weight: 400;
-  line-height: 48px;
 }
 
-.text--small-text {
-  font-size: 24px;
-  font-weight: 400;
+.text--extra-header6 {
+  font-weight: 900;
+  font-size: 32px;
+}
+
+.text--base-text {
+  font-size: 32px;
 }
 
 .text--color-primary {
@@ -175,6 +233,38 @@ table {
 
 .mt-section {
   margin-top: 136px;
+}
+
+/* Custom Font */
+@font-face {
+  font-family: "Inter";
+  src: url(../../font/Inter/static/Inter-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(../../font/Inter/static/Inter-Bold.ttf);
+  font-weight: bold;
+}
+
+:root {
+  --main-text-color: #333;
+  --secondary-text-color: #68717a;
+  --primary-color: #0d6efd;
+  --secondary-color: #17a2b8;
+  --tertiary-color: #333;
+  --base-padding: 48px;
+}
+
+body,
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Inter";
+  color: #333;
 }
 
 .btn {
@@ -288,7 +378,7 @@ table {
 }
 
 .feature-section-header {
-  margin-bottom: 48px;
+  margin-bottom: 96px;
   text-align: center;
 }
 
@@ -303,8 +393,20 @@ table {
           flex-direction: row;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  width: 300vw;
-  overflow: scroll;
+  width: 100vw;
+  overflow-x: scroll;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  height: auto;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.feature-slider::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 
 .feature-slider__card {
@@ -315,7 +417,45 @@ table {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 16px;
-  width: 100vw;
+  scroll-snap-align: start;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  gap: 24px;
+  max-width: 90vw;
+  padding: 0 var(--base-padding);
+}
+
+.feature-slider__img {
+  margin-top: 48px;
+  max-height: 600px;
+}
+
+.pagination {
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 33%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pagination__circle {
+  width: 16px;
+  height: 16px;
+  margin-top: 96px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+}
+
+.pagination__circle--active {
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
+  background-color: var(--primary-color);
 }
 /*# sourceMappingURL=main.css.map */

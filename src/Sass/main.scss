@@ -1,8 +1,9 @@
 @import "base/_reset.scss";
 @import "base/_typography.scss";
+@import "base/_global.scss";
 
 @import "components/_button.scss";
 @import "components/_header.scss";
 
 @import "layout/_heroSection.scss";
-@import "layout/featuresSection";
+@import "layout/_featuresSection";

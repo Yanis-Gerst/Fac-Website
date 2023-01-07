@@ -1,37 +1,29 @@
-.text--extra-header4 {
-  font-weight: bold;
-  font-size: 48px;
+$headerNumber: 6;
+$base-font-size: 32px;
+
+@function defineFontSize($index) {
+  @return $base-font-size + 8 * (6 - $index);
 }
 
-.text--semi-header4 {
-  font-size: 48px;
-  font-weight: 600;
-}
+@for $i from 1 through $headerNumber {
+  .text--header#{$i} {
+    font-weight: bold;
+    font-size: defineFontSize($i);
+  }
 
-.text--header2 {
-  font-weight: bold;
-  font-size: 64px;
-}
+  .text--semi-header#{$i} {
+    font-weight: 600;
+    font-size: defineFontSize($i);
+  }
 
-.text--header5 {
-  font-weight: bold;
-  font-size: 40px;
-}
-
-.text--header6 {
-  font-weight: bold;
-  font-size: 32px;
+  .text--extra-header#{$i} {
+    font-weight: 900;
+    font-size: defineFontSize($i);
+  }
 }
 
 .text--base-text {
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 48px;
-}
-
-.text--small-text {
-  font-size: 24px;
-  font-weight: 400;
+  font-size: $base-font-size;
 }
 
 .text--color-primary {
@@ -44,4 +36,18 @@
 
 .mt-section {
   margin-top: 136px;
+}
+
+/* Custom Font */
+
+@font-face {
+  font-family: "Inter";
+  src: url(../../font/Inter/static/Inter-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(../../font/Inter/static/Inter-Bold.ttf);
+  font-weight: bold;
 }
