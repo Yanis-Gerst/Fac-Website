@@ -9,11 +9,7 @@ const FeatureCard = ({ feature }: Props) => {
     <div className="feature-slider__card">
       <h2 className="text--semi-header4">{feature.title}</h2>
       <p className="text--base-text text--color-sub">{feature.text}</p>
-      <img
-        src={feature.illustration}
-        className="feature-slider__img"
-        alt="xD"
-      />
+      <img src={feature.illustration} className="feature-slider__img" alt="" />
     </div>
   );
 };

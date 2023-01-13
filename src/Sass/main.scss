@@ -1,9 +1,11 @@
 @import "base/_reset.scss";
-@import "base/_typography.scss";
 @import "base/_global.scss";
+@import "base/function";
+@import "base/_typography.scss";
 
-@import "components/_button.scss";
-@import "components/_header.scss";
-
+@import "layout/header";
 @import "layout/_heroSection.scss";
 @import "layout/_featuresSection";
+@import "layout/questionnarySection";
+
+@import "page/landingPage";

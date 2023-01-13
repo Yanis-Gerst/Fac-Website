@@ -1,0 +1,17 @@
+.questionnary-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 toRem(16px);
+  align-items: center;
+  padding-bottom: 100%;
+}
+
+.questionnary-section__illustration {
+  width: 80%;
+}
+
+.questionnary-section__header {
+  margin-top: toRem(80px);
+  margin-bottom: toRem(64px);
+}

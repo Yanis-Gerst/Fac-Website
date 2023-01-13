@@ -1,18 +1,23 @@
+$base-font-size: 32px;
+
 :root {
   --main-text-color: #333;
   --secondary-text-color: #68717a;
   --primary-color: #0d6efd;
   --secondary-color: #17a2b8;
   --tertiary-color: #333;
-  --base-padding: 48px;
+  --base-padding: 1.5rem;
+  --stroke-light: #dee2e6;
 }
 
 body,
 html {
   overflow-x: hidden;
+  font-size: $base-font-size;
 }
 
 body {
   font-family: "Inter";
   color: #333;
+  box-sizing: border-box;
 }

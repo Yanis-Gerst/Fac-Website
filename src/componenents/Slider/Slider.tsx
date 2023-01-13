@@ -1,5 +1,6 @@
 import React, { Children, useEffect, useRef, useState } from "react";
 import Pagination from "./Pagination/Pagination";
+import "./_slider.scss";
 
 interface Props {
   children: React.ReactNode;
@@ -34,16 +35,14 @@ const FeaturesSection = ({ children }: Props) => {
   };
 
   return (
-    <>
-      <h1 className="text--header2 feature-section-header mt-section">
-        Name c'est Quoi ?
-      </h1>
+    <div className="slider-wrapper">
+      <h1 className="text--header2 slider-header">Name c'est Quoi ?</h1>
 
-      <div className="feature-slider" ref={sliderElement}>
+      <div className="slider" ref={sliderElement}>
         {children}
       </div>
       <Pagination activeIndex={activeIndex} slideNumber={slideNumber} />
-    </>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 
 const NavBar = () => {
   return (
-    <>
+    <div className="navbar-wrapper">
       <header className="nav-bar">
         <p className="text--header5">Name</p>
         <nav className="nav-bar__naviguation">
@@ -23,7 +23,7 @@ const NavBar = () => {
       <div className="divider-wrapper">
         <div className="divider-wrapper__line" />
       </div>
-    </>
+    </div>
   );
 };
 

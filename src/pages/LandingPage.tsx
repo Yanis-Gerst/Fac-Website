@@ -4,6 +4,7 @@ import sucessFeatureIllus from "../../assets/succesFeature.svg";
 
 import FeatureCard from "../layout/FeatureCard";
 import HeroSection from "../layout/HeroSection/HeroSection";
+import QuestionnarySection from "../layout/QuestionnarySection";
 import NavBar from "../layout/NavBar/NavBar";
 import Slider from "../componenents/Slider";
 
@@ -35,12 +36,15 @@ const LandingPage = () => {
   return (
     <>
       <NavBar />
-      <HeroSection />
-      <Slider>
-        {featureList.map((feature) => {
-          return <FeatureCard key={feature.title} feature={feature} />;
-        })}
-      </Slider>
+      <div className="landing-page">
+        <HeroSection />
+        <Slider>
+          {featureList.map((feature) => {
+            return <FeatureCard key={feature.title} feature={feature} />;
+          })}
+        </Slider>
+        <QuestionnarySection />
+      </div>
     </>
   );
 };

@@ -12,7 +12,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <>
+    <div className="hero-wrapper">
       <h1 className="hero-header" ref={heroHeader}>
         Lorem ipsum dolor sit amet,{" "}
         <span className="text--color-primary">consectetur</span> adipiscing
@@ -20,23 +20,23 @@ const HeroSection = () => {
       </h1>
 
       <div className="hero-section" ref={heroSection}>
-        <p className="text--base-text">
+        <p className="text--base-text hero-section__base-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis. Class
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
           inceptos himenaeos.
         </p>
-        <Button type="primary">
-          <p className="text--header6">Commencer</p>
+        <Button type="primary" specificStyle="text--header6">
+          Commencer
         </Button>
 
-        <Button type="tertiary-invert">
-          <p className="text--header6">👇 Découvrir Name</p>
+        <Button type="tertiary-invert" specificStyle="text--header6">
+          👇 Découvrir Name
         </Button>
 
-        <img src={heroIllustration} />
+        <img src={heroIllustration} className="hero-section__illustration" />
       </div>
-    </>
+    </div>
   );
 };
 
