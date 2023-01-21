@@ -1,4 +1,10 @@
-import React, { Children, useEffect, useRef, useState } from "react";
+import React, {
+  Children,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Pagination from "./Pagination/Pagination";
 import "./_slider.scss";
 
@@ -9,12 +15,25 @@ const FeaturesSection = ({ children }: Props) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const sliderElement = useRef<HTMLDivElement>(null);
 
+  const positionSliderFullPage = () => {
+    if (!sliderElement.current) return;
+    sliderElement.current.style.marginLeft = "0";
+    const leftDistance = sliderElement.current.getBoundingClientRect().left;
+    sliderElement.current.style.marginLeft = `-${leftDistance}`;
+  };
+
+  useLayoutEffect(() => {
+    positionSliderFullPage();
+  }, []);
+
   useEffect(() => {
     if (!sliderElement.current) return;
 
     sliderElement.current.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", positionSliderFullPage);
     return () => {
       sliderElement.current?.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", positionSliderFullPage);
     };
   }, []);
 
@@ -30,18 +49,21 @@ const FeaturesSection = ({ children }: Props) => {
         )
       ) | 48;
     const oneElementWitdh =
-      currentElement.scrollWidth / slideNumber - paddingValue * slideNumber;
+      currentElement.scrollWidth / slideNumber - paddingValue * 2;
+
     setActiveIndex(Math.floor(currentScroll / oneElementWitdh));
   };
 
   return (
     <div className="slider-wrapper">
-      <h1 className="text--header2 slider-header">Name c'est Quoi ?</h1>
-
       <div className="slider" ref={sliderElement}>
         {children}
       </div>
-      <Pagination activeIndex={activeIndex} slideNumber={slideNumber} />
+      <Pagination
+        activeIndex={activeIndex}
+        slideNumber={slideNumber}
+        sliderElement={sliderElement}
+      />
     </div>
   );
 };

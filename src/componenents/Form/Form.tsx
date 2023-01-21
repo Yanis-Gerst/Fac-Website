@@ -32,7 +32,7 @@ const Form = ({ options }: Props) => {
       <ul className="form__inputs">
         {Object.keys(options).map((key) => {
           return (
-            <li onClick={handleClick}>
+            <li onClick={handleClick} key={key}>
               <input
                 type="radio"
                 name="option"
@@ -52,7 +52,7 @@ const Form = ({ options }: Props) => {
       <Button
         type={"primary"}
         onClick={handleSubmit}
-        specificStyle="form__submit-button text--extra-header5"
+        specificStyle="form__submit-button"
       >
         Suivant
       </Button>

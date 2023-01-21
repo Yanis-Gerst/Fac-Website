@@ -1,14 +1,14 @@
+import React from "react";
 import fichesFeatureIllu from "../../assets/ficheFeature.svg";
 import exerciceFeatureIllu from "../../assets/exerciceFeature.svg";
 import sucessFeatureIllus from "../../assets/succesFeature.svg";
-
-import FeatureCard from "../layout/FeatureCard";
+import githubIcon from "../../assets/githubIcon.svg";
 import HeroSection from "../layout/HeroSection/HeroSection";
 import QuestionnarySection from "../layout/QuestionnarySection";
 import NavBar from "../layout/NavBar/NavBar";
-import Slider from "../componenents/Slider";
 
 import { IFeature } from "../@types/global";
+import FeaturesSection from "../layout/FeaturesSection";
 
 const LandingPage = () => {
   const placeholderText =
@@ -18,35 +18,39 @@ const LandingPage = () => {
       title: "Fiches de Révision",
       illustration: fichesFeatureIllu,
       text: placeholderText,
+      alt: "Plusieurs autours d'une table qui travaillent.",
     },
     {
       title: "Exercies et Examen",
       illustration: exerciceFeatureIllu,
       text: placeholderText,
+      alt: "2 Personnes qui sont sur une pile de livres énormes qui sont en train de travailler.",
     },
     {
       title: "Vous aider à Réussir",
       illustration: sucessFeatureIllus,
       text: placeholderText,
+      alt: "Un Homme grand qui pose un drapeau comme signe de réussite sur une pile de livre",
+    },
+    {
+      title: "Open Source",
+      illustration: githubIcon,
+      text: placeholderText,
+      alt: "Le logo de github, une plateforme d'hérbegement de projet open source",
     },
   ];
 
-  //RESPONSIVE: Faire un autre composant qui permet d'afficher la grid des features et faire un render conditionnel selon
-  // la window.
   return (
     <>
       <NavBar />
       <div className="landing-page">
         <HeroSection />
-        <Slider>
-          {featureList.map((feature) => {
-            return <FeatureCard key={feature.title} feature={feature} />;
-          })}
-        </Slider>
+        <FeaturesSection featuresList={featureList} />
         <QuestionnarySection />
       </div>
     </>
   );
 };
 
+export const desktopBreakpoint = 1200;
 export default LandingPage;

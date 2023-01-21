@@ -13,10 +13,19 @@ $types: "primary", "secondary", "tertiary";
 @each $type in $types {
   .btn--#{$type} {
     background-color: var(--#{$type}-color);
+    cursor: pointer;
+    &:hover {
+      background-color: var(--#{$type}-color-accent);
+    }
   }
 
   .btn--#{$type}-invert {
     border: 2px solid var(--#{$type}-color);
     color: var(--#{$type}-color);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--#{$type}-color);
+    }
   }
 }

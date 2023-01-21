@@ -39,7 +39,7 @@ const QuestionnarySection = () => {
         alt="un homme qui se pose une question."
         className="questionnary-section__illustration"
       />
-      <h1 className="text--header4 questionnary-section__header">
+      <h1 className="text--header5 questionnary-section__header">
         Quelle est ton cursus ?
       </h1>
       <Form options={formOptions} />

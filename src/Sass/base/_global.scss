@@ -1,23 +1,48 @@
-$base-font-size: 32px;
+$desktop-breakpoint: 1200px;
+$tablet-breakpoint: 660px;
 
 :root {
   --main-text-color: #333;
   --secondary-text-color: #68717a;
+  --disabled-text-color: #adb5bd;
   --primary-color: #0d6efd;
+  --primary-color-accent: #0a58ca;
   --secondary-color: #17a2b8;
   --tertiary-color: #333;
   --base-padding: 1.5rem;
   --stroke-light: #dee2e6;
+  --base-font-size: 16px;
+  --rounded: 4px;
+}
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-text-color);
 }
 
 body,
 html {
   overflow-x: hidden;
-  font-size: $base-font-size;
+  font-size: var(--base-font-size);
 }
 
 body {
   font-family: "Inter";
   color: #333;
   box-sizing: border-box;
+}
+
+@media (max-width: 375px) {
+  :root {
+    --base-font-size: 13px;
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  :root {
+    --base-padding: 3rem;
+  }
 }

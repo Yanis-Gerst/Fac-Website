@@ -1,7 +1,11 @@
 $headerNumber: 6;
 
 @function defineFontSize($index) {
-  @return toRem($base-font-size + 8 * (6 - $index));
+  @return 4 - 0.5 * ($index) + rem;
+}
+
+@function defineFontSizeResponsive($index) {
+  @return (4 - 0.5 * ($index)) + 0.5 + rem;
 }
 
 @for $i from 1 through $headerNumber {
@@ -19,16 +23,33 @@ $headerNumber: 6;
     font-weight: 900;
     font-size: defineFontSize($i);
   }
+
+  @media (min-width: $desktop-breakpoint) {
+    .text--header#{$i} {
+      font-weight: bold;
+      font-size: defineFontSizeResponsive($i);
+    }
+
+    .text--semi-header#{$i} {
+      font-weight: 600;
+      font-size: defineFontSizeResponsive($i);
+    }
+
+    .text--extra-header#{$i} {
+      font-weight: 900;
+      font-size: defineFontSizeResponsive($i);
+    }
+  }
 }
 
 .text--base-text {
-  font-size: $base-font-size;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 160%;
 }
 
 .text--small-text {
-  font-size: toRem(24px);
+  font-size: 0.75rem;
 }
 
 .text--color-primary {

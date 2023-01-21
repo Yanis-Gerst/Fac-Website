@@ -1,17 +1,25 @@
 $spacing: 1rem;
 
 .hero-header {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   line-height: 120%;
-  margin: toRem(56px) var(--base-padding) 0 var(--base-padding);
+  margin: 1.75rem var(--base-padding) 0 var(--base-padding);
+}
+
+.hero-text {
+  display: flex;
+  flex-flow: column;
+  gap: $spacing;
 }
 
 .hero-wrapper {
   display: flex;
   flex-flow: column;
   gap: $spacing;
-  height: 75vh;
+  position: relative;
+  margin: 0 auto;
+  max-width: 400px;
 }
 
 .hero-section {
@@ -22,9 +30,86 @@ $spacing: 1rem;
 
   button {
     width: 100%;
+    transform: translateY(0px);
+    transition: transform 0.5s;
+    &:hover {
+      transform: translateY(-2px);
+      transition: transform 0.5s, background-color 0.25s;
+    }
   }
 }
 
-.hero-section__illustration {
-  margin-top: toRem(32px);
+.hero-wrapper__discover {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero-wrapper .hero-wrapper__discover-button {
+  border-radius: 50%;
+  padding: 0.5em;
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .hero-wrapper__discover {
+    display: none !important;
+  }
+}
+
+@media (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint) {
+  .hero-header {
+    font-size: 2.15rem; /*2.15rem*/
+  }
+
+  .hero-section p {
+    font-size: 1rem; /* 1rem */
+  }
+
+  .hero-wrapper {
+    max-width: 550px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: $desktop-breakpoint) {
+  .hero-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 80vh;
+    margin-top: 10vh;
+    padding: 0 2em;
+    box-sizing: border-box;
+    max-width: none;
+  }
+
+  .hero-header {
+    font-size: 2.6vw;
+  }
+
+  .hero-section p {
+    font-size: 1.5vw;
+  }
+
+  .hero-section .hero-section__start-button {
+    width: fit-content;
+    padding: 0.5em 1.25em;
+    font-size: 1.5vw !important;
+  }
+
+  .hero-section__illustration {
+    width: 100%;
+  }
+
+  .hero_section__discover-button {
+    display: none !important;
+  }
 }

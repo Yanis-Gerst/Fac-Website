@@ -1,0 +1,61 @@
+.sidebar-wrapper {
+  width: 80%;
+  background-color: #fefefe;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-left: 1rem;
+}
+
+.slideIn {
+  animation: slideIn 0.5s forwards;
+}
+
+.slideOut {
+  animation: slideOut 0.5s forwards;
+}
+
+.sidebar-cross {
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.625rem;
+}
+
+.sidebar-chapter-item {
+  opacity: 0.3;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+    transition: opacity 0.25s;
+  }
+}
+
+.sidebar-chapter-item--active {
+  opacity: 1;
+  cursor: auto;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

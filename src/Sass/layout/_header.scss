@@ -16,11 +16,16 @@
 }
 
 .nav-bar__naviguation {
-  width: 33%;
+  width: 40%;
   ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  a {
+    color: var(--primary-text-color);
+    text-decoration: none;
   }
 }
 
@@ -30,5 +35,20 @@
     width: 100%;
     height: 1px;
     background-color: rgb(229, 231, 235);
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .nav-bar {
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    ul {
+      font-size: 1rem;
+    }
+  }
+
+  .nav-bar__naviguation {
+    width: 30%;
   }
 }

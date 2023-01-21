@@ -12,7 +12,7 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 
   li {
     width: 100%;
@@ -41,4 +41,6 @@
 
 .form__submit-button {
   width: 100%;
+  font-size: 1rem;
+  font-weight: 800;
 }
