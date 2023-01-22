@@ -8,7 +8,7 @@
   max-width: 100%;
   padding-top: 0.75em;
   padding-bottom: 0.75em;
-  padding-right: 4em;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,11 +16,14 @@
 }
 
 .nav-bar__naviguation {
-  width: 40%;
+  width: fit-content;
+  margin-left: auto;
   ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
   }
 
   a {

@@ -7,10 +7,10 @@ import "./_modale.scss";
 export interface Props {
   children: React.ReactElement;
   toClose: () => void;
-  state?: boolean;
+  appearOnScrean?: boolean;
 }
 
-export const Modal = ({ children, toClose, state }: Props) => {
+export const Modal = ({ children, toClose, appearOnScrean }: Props) => {
   const newChildren = cloneElement(children, { toClose });
 
   const handleShortcut = (e: KeyboardEvent) => {
@@ -30,7 +30,7 @@ export const Modal = ({ children, toClose, state }: Props) => {
   return createPortal(
     <div
       className={`modale-container ${
-        state ? "modale-opacity-visible" : "modale-opacity-0"
+        appearOnScrean ? "modale-opacity-visible" : "modale-opacity-0"
       }`}
     >
       {newChildren}

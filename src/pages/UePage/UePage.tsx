@@ -7,44 +7,58 @@ import SidebarMenu from "./SidebarMenu";
 interface Props {
   data: ITeachingUnit;
 }
+
 const UePage = ({ data }: Props) => {
   const [currentChapterIndex, setCurrentChapterIndex] = useState<number>(0);
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
 
   const chapterToRender = data.chapters[currentChapterIndex];
   const handleClickOnChapterNav = (e: React.MouseEvent<HTMLLIElement>) => {
-    const dataIndex = parseInt(
+    const chapterSelectedIndex = parseInt(
       e.currentTarget.getAttribute("data-index") as string
     );
-    setCurrentChapterIndex(dataIndex);
+    setCurrentChapterIndex(chapterSelectedIndex);
     setShowSidebar(false);
   };
   return (
     <>
-      <NavBar />
-      <Button type="primary" onClick={() => setShowSidebar(true)}>
-        Chaptire Menu
-      </Button>
-      <h1 className="ue-title">{data.title}</h1>
+      <NavBar>
+        <Button
+          type="tertiary"
+          specificStyle="ue-open-menu"
+          onClick={() => setShowSidebar(true)}
+        >
+          Chaptire Menu
+        </Button>
+      </NavBar>
 
-      <h2 className="ue-chapter-header text--extra-header5">
-        Chapitre {currentChapterIndex}: {chapterToRender.title}
-      </h2>
+      <div className="ue-page-wrapper">
+        <h1 className="ue-title">{data.title}</h1>
 
-      <SidebarMenu toClose={() => setShowSidebar(false)} state={showSidebar}>
-        {data.chapters.map((chapter, index) => (
-          <li
-            key={chapter.title}
-            onClick={handleClickOnChapterNav}
-            data-index={index}
-            className={`sidebar-chapter-item ${
-              index == currentChapterIndex ? "sidebar-chapter-item--active" : ""
-            }`}
-          >
-            Chaptire {index}: {chapter.title}
-          </li>
-        ))}
-      </SidebarMenu>
+        <h2 className="ue-chapter-header text--extra-header5">
+          Chapitre {currentChapterIndex}: {chapterToRender.title}
+        </h2>
+
+        <SidebarMenu
+          toClose={() => setShowSidebar(false)}
+          appearOnScrean={showSidebar}
+        >
+          {data.chapters.map((chapter, index) => (
+            <li
+              key={chapter.title}
+              onClick={handleClickOnChapterNav}
+              data-index={index}
+              className={`sidebar-chapter-item ${
+                index == currentChapterIndex
+                  ? "sidebar-chapter-item--active"
+                  : ""
+              }`}
+            >
+              Chaptire {index}: {chapter.title}
+            </li>
+          ))}
+        </SidebarMenu>
+      </div>
     </>
   );
 };

@@ -6,9 +6,10 @@
   bottom: 0;
   right: 0;
   background-color: #222020b3;
+
   display: flex;
   flex-flow: column;
-  transition: opacity 0.25s;
+  transition: opacity 0.25s, z-index 0.25s;
 }
 
 .modale-opacity-visible {

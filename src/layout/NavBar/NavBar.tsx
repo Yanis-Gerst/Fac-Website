@@ -1,7 +1,12 @@
-import React from "react";
+import React, { Children } from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+interface Props {
+  children?: React.ReactNode;
+}
+const NavBar = ({ children }: Props) => {
+  const childrenArray = Children.toArray(children);
+
   return (
     <div className="navbar-wrapper">
       <header className="nav-bar">
@@ -11,14 +16,14 @@ const NavBar = () => {
         <nav className="nav-bar__naviguation">
           <ul className="text--small-text">
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
               <p>Hub</p>
             </li>
             <li>
               <p>About</p>
             </li>
+            {childrenArray.map((child) => (
+              <li key={child.toString()}>{child}</li>
+            ))}
           </ul>
         </nav>
       </header>

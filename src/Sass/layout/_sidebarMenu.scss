@@ -6,14 +6,15 @@
   bottom: 0;
   right: 0;
   padding-left: 1rem;
+  transition: transform 0.5s;
 }
 
 .slideIn {
-  animation: slideIn 0.5s forwards;
+  transform: translateX(0);
 }
 
 .slideOut {
-  animation: slideOut 0.5s forwards;
+  transform: translateX(100%);
 }
 
 .sidebar-cross {
@@ -41,21 +42,4 @@
 .sidebar-chapter-item--active {
   opacity: 1;
   cursor: auto;
-}
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
 }

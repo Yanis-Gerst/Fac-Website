@@ -5,13 +5,15 @@ import crossIcon from "../../../../assets/cross.svg";
 interface Props {
   children: React.ReactNode;
   toClose: () => void;
-  state: boolean;
+  appearOnScrean: boolean;
 }
 
-const SidebarMenu = ({ children, toClose, state }: Props) => {
+const SidebarMenu = ({ children, toClose, appearOnScrean }: Props) => {
   return (
-    <Modal toClose={toClose} state={state}>
-      <div className={`sidebar-wrapper ${state ? "slideIn" : "slideOut"}`}>
+    <Modal toClose={toClose} appearOnScrean={appearOnScrean}>
+      <div
+        className={`sidebar-wrapper ${appearOnScrean ? "slideIn" : "slideOut"}`}
+      >
         <img
           src={crossIcon}
           className="sidebar-cross"
