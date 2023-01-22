@@ -9,6 +9,7 @@ import UePage from "../UePage";
 type uePageState = {
   pageData: ITeachingUnit;
 };
+
 const UrlHandler = () => {
   const location = useLocation();
   const currentUrl = location.pathname;

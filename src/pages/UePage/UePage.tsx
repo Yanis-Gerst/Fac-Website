@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ITeachingUnit } from "../../@types/global";
 import Button from "../../componenents/Button";
 import NavBar from "../../layout/NavBar";
+import Sheets from "../../layout/Sheets";
 import SidebarMenu from "./SidebarMenu";
 
 interface Props {
@@ -38,6 +39,11 @@ const UePage = ({ data }: Props) => {
         <h2 className="ue-chapter-header text--extra-header5">
           Chapitre {currentChapterIndex}: {chapterToRender.title}
         </h2>
+
+        <Sheets
+          revisionSheetsData={chapterToRender.revionSheets}
+          exercicesSheetsData={chapterToRender.exercicesSheets}
+        />
 
         <SidebarMenu
           toClose={() => setShowSidebar(false)}
