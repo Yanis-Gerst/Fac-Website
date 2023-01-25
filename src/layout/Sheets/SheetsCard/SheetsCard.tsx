@@ -1,33 +1,28 @@
 import React from "react";
 import { publicationUnit } from "../../../@types/global";
 import Button from "../../../componenents/Button";
+import SheetsCardIcons from "./SheetsCardIcons";
 
 interface Props {
-  sheetsData: publicationUnit;
+  sheetData: publicationUnit;
   type: "revision" | "exercices";
 }
 
-const SheetsCard = ({ sheetsData, type }: Props) => {
+const SheetsCard = ({ sheetData, type }: Props) => {
   return (
     <div className="sheets-card-wrapper">
-      <h3>{sheetsData.title}</h3>
-      <p>{sheetsData.descriptions}</p>
-
-      <div className="sheets-icons-wrapper">
-        <div className="sheets-icon__user">
-          <p>{sheetsData.userName}</p>
-        </div>
-        <div className="sheets-icons__like">
-          <p>{sheetsData.like}</p>
-        </div>
-        <div className="sheets-icons__year-of-publication">
-          <p>{sheetsData.yearOfPublication}</p>
-        </div>
-      </div>
-
-      <div className="sheet-card__button-wrapper">
-        {type == "exercices" && <Button type="secondary">Correctoin</Button>}
-        <Button type="primary">Télécharger</Button>
+      <h4 className="text--header6 sheets-card-header">{sheetData.title}</h4>
+      <p className="sheets-card-desc">{sheetData.descriptions}</p>
+      <SheetsCardIcons
+        userName={sheetData.userName}
+        like={sheetData.like}
+        yearOfPublication={sheetData.yearOfPublication}
+      />
+      <div className="sheets-card__button-wrapper">
+        {type == "exercices" && <Button type="secondary">Correction</Button>}
+        <Button type="primary" specificStyle="text--small-text">
+          Télécharger
+        </Button>
       </div>
     </div>
   );

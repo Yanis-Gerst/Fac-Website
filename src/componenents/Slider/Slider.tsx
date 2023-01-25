@@ -10,8 +10,9 @@ import "./_slider.scss";
 
 interface Props {
   children: React.ReactNode;
+  pagination?: boolean;
 }
-const FeaturesSection = ({ children }: Props) => {
+const FeaturesSection = ({ children, pagination = true }: Props) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const sliderElement = useRef<HTMLDivElement>(null);
 
@@ -59,11 +60,13 @@ const FeaturesSection = ({ children }: Props) => {
       <div className="slider" ref={sliderElement}>
         {children}
       </div>
-      <Pagination
-        activeIndex={activeIndex}
-        slideNumber={slideNumber}
-        sliderElement={sliderElement}
-      />
+      {pagination && (
+        <Pagination
+          activeIndex={activeIndex}
+          slideNumber={slideNumber}
+          sliderElement={sliderElement}
+        />
+      )}
     </div>
   );
 };

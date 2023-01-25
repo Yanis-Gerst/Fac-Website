@@ -34,7 +34,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "start": "vite",
+    "dev": "vite",
     "build": "eslint src && tsc && vite build",
     "serve": "vite preview"
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { ITeachingDomain } from "../../@types/global";
-import rightArrow from "../../../assets/rightArrow.svg";
+import { ReactComponent as RightArrow } from "../../../assets/rightArrow.svg";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -26,11 +26,7 @@ export const TeachingUnit = ({ domains, activeTabIndex, semester }: Props) => {
               >
                 {teachUnit.title}
               </Link>
-              <img
-                src={rightArrow}
-                alt="right arrow"
-                className="teach-unit-card__arrow"
-              />
+              <RightArrow className="teach-unit-card__arrow" />
             </li>
           )
         )}

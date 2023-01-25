@@ -43,18 +43,12 @@ $max-width-cursusPage-desktop: 700px;
   padding-bottom: 1rem;
 
   &:hover {
-    transition: color 0.25s, justify-content 1s;
+    transition: color 0.25s;
     color: var(--primary-color);
-    justify-content: flex-start;
-    gap: 1rem;
 
-    .teach-unit-card__arrow {
-      order: 0;
+    .teach-unit-card__arrow path {
       fill: var(--primary-color);
-    }
-
-    a {
-      order: 1;
+      stroke: var(--primary-color);
     }
   }
 }

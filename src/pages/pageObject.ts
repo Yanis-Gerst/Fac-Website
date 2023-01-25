@@ -15,9 +15,37 @@ const pageDbJson: IPageDbJson = {
                 revionSheets: [
                   {
                     title: "Résumé Formule",
-                    descriptions: "Toutes les formules de l'ue par chapitre.",
+                    descriptions:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate lectus orci",
                     userName: "Yanis Gerst",
                     like: 0,
+                    yearOfPublication: 2023,
+                    pdfUrl: "",
+                  },
+                  {
+                    title: "Résumé Démonstration",
+                    descriptions:
+                      "Condensée de toutes les démonstratoin de L'UE",
+                    userName: "Yanis Gerst",
+                    like: 24,
+                    yearOfPublication: 2023,
+                    pdfUrl: "",
+                  },
+                  {
+                    title: "Résumé Démonstration",
+                    descriptions:
+                      "Condensée de toutes les démonstratoin de L'UE",
+                    userName: "Yanis Gerst",
+                    like: 24,
+                    yearOfPublication: 2023,
+                    pdfUrl: "",
+                  },
+                  {
+                    title: "Résumé Démonstration",
+                    descriptions:
+                      "Condensée de toutes les démonstratoin de L'UE",
+                    userName: "Yanis Gerst",
+                    like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
                   },
@@ -50,6 +78,10 @@ const pageDbJson: IPageDbJson = {
         teachingUnitsS2: [
           {
             title: "Algèbre Linéaire",
+            chapters: [],
+          },
+          {
+            title: "Analyse",
             chapters: [],
           },
         ],

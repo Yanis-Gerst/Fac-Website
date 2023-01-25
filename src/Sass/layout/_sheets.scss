@@ -1,0 +1,16 @@
+.sheets-slider {
+  width: 100vw;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0 calc(var(--base-padding) * -1);
+  overflow-x: scroll;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  padding-right: 2rem;
+  padding-left: var(--base-padding);
+  @include removeScrollBar();
+
+  & > * {
+    flex-shrink: 0;
+  }
+}
