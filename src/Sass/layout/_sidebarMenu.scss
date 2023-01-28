@@ -1,11 +1,6 @@
 .sidebar-wrapper {
-  width: 80%;
   background-color: #fefefe;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  padding-left: 1rem;
+  padding-left: 0 1rem;
   transition: transform 0.5s;
 }
 
@@ -26,12 +21,14 @@
 .sidebar-list {
   display: flex;
   flex-direction: column;
-  gap: 2.625rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
-.sidebar-chapter-item {
+.sidebar-list__chapter-item {
   opacity: 0.3;
   cursor: pointer;
+  font-size: 1rem;
 
   &:hover {
     opacity: 1;
@@ -39,7 +36,7 @@
   }
 }
 
-.sidebar-chapter-item--active {
+.sidebar-list__chapter-item--active {
   opacity: 1;
   cursor: auto;
 }

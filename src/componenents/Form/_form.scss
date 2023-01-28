@@ -19,6 +19,7 @@
     display: grid;
     grid-template-columns: 2em auto;
     align-items: center;
+    cursor: pointer;
 
     border: 1px solid var(--stroke-light);
     border-radius: 4px;
@@ -27,6 +28,10 @@
 
     &:has(> input:checked) {
       border-color: var(--primary-color);
+    }
+
+    & > * {
+      cursor: pointer;
     }
   }
 }

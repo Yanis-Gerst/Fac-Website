@@ -1,5 +1,17 @@
+.sheets-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  margin: 0 calc(var(--base-padding) * -1);
+  padding-left: var(--base-padding);
+  padding-right: var(--base-padding);
+  margin-top: 0.5rem;
+  animation: fadeIn 0.25s forwards;
+  overflow-y: none;
+}
+
 .sheets-slider {
   width: 100vw;
+  max-width: calc(100% + var(--base-padding) * 2);
   display: flex;
   gap: 1.5rem;
   margin: 0 calc(var(--base-padding) * -1);
@@ -12,5 +24,41 @@
 
   & > * {
     flex-shrink: 0;
+  }
+}
+
+.sheets-slider-header {
+  font-size: 1.25rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(-1.5rem);
+  }
+  to {
+    opacity: 1;
+    z-index: 0;
+    transform: translateY(0);
+    background-color: #f8f9fa;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-1.5rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .sheets-wrapper {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    animation: slideDown 0.25s;
   }
 }

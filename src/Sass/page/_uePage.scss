@@ -5,14 +5,38 @@
 .ue-title {
   margin-top: 2.5rem;
   margin-bottom: 2rem;
-  font-size: 2rem;
 }
 
-.ue-chapter-header {
-  margin-bottom: 2rem;
-}
+@media (min-width: $desktop-breakpoint) {
+  .ue-page-wrapper {
+    display: flex;
+    flex-flow: row;
+    padding: 0 calc(var(--base-padding) * -1);
 
-.ue-open-menu {
-  font-weight: 700;
-  padding: 0.5em 0.5em !important;
+    width: 100%;
+
+    align-items: flex-start;
+    align-content: flex-start;
+
+    .sidebar-wrapper {
+      width: 25%;
+      flex-shrink: 0;
+      padding-left: var(--base-padding);
+    }
+
+    .ue-page-current-chapter {
+      width: 75%;
+      animation: fadeIn 0.25s;
+    }
+  }
+
+  .ue-page-header {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 2.25rem 0;
+  }
+
+  .sidebar-list__item {
+    font-size: 1rem;
+  }
 }

@@ -26,6 +26,7 @@ $types: "primary", "secondary", "tertiary";
 
     &:hover {
       background-color: var(--#{$type}-color);
+      color: #fefefe;
     }
   }
 }

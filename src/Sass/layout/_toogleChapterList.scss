@@ -1,0 +1,35 @@
+.toogle-item__header {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--base-padding) / 4);
+  margin-left: calc(var(--base-padding) * -1 + var(--base-padding) / 4);
+
+  svg {
+    fill: none;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+}
+
+.toogle-chaper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.toogle-chaper-list__toogle-item h2 {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.toogle-item__svg--active {
+  transform: rotate(90deg);
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .toogle-item__header {
+    gap: 1rem;
+    margin-left: calc(var(--base-padding) * -1 + 1rem);
+  }
+}

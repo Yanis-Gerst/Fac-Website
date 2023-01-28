@@ -11,7 +11,7 @@ interface Props {
 const SheetsSlider = ({ sheetsData, type }: Props) => {
   return (
     <>
-      <h3 className="text--extra-header6 sheets-slider-header">
+      <h3 className="sheets-slider-header text--semi-header5">
         {type == "revision" ? "Fiches de Révision" : "Exercices"}
       </h3>
       <div className="sheets-slider">

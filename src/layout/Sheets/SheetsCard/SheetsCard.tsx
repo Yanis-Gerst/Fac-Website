@@ -11,17 +11,27 @@ interface Props {
 const SheetsCard = ({ sheetData, type }: Props) => {
   return (
     <div className="sheets-card-wrapper">
-      <h4 className="text--header6 sheets-card-header">{sheetData.title}</h4>
+      <h4 className="sheets-card-header text--semi-header6">
+        {sheetData.title}
+      </h4>
       <p className="sheets-card-desc">{sheetData.descriptions}</p>
       <SheetsCardIcons
         userName={sheetData.userName}
         like={sheetData.like}
         yearOfPublication={sheetData.yearOfPublication}
       />
-      <div className="sheets-card__button-wrapper">
-        {type == "exercices" && <Button type="secondary">Correction</Button>}
-        <Button type="primary" specificStyle="text--small-text">
-          Télécharger
+      <div
+        className={`sheets-card__button-wrapper ${
+          type === "exercices" && "sheets-card__button-wrapper--exercices"
+        }`}
+      >
+        {type === "exercices" && (
+          <Button type="secondary" specificStyle="sheets-card__button">
+            Correction
+          </Button>
+        )}
+        <Button type="primary" specificStyle="sheets-card__button">
+          {type === "exercices" ? "Exercices" : "Télécharger"}
         </Button>
       </div>
     </div>

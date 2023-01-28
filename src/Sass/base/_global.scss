@@ -8,8 +8,9 @@ $tablet-breakpoint: 660px;
   --primary-color: #0d6efd;
   --primary-color-accent: #0a58ca;
   --secondary-color: #17a2b8;
+  --secondary-color-accent: #0f92a7;
   --tertiary-color: #333;
-  --tertiary-color-accent: #222;
+  --tertiary-color-accent: #444;
   --base-padding: 1.5rem;
   --stroke-light: #dee2e6;
   --base-font-size: 16px;
@@ -24,16 +25,11 @@ a {
   color: var(--main-text-color);
 }
 
-body,
-html {
-  overflow-x: hidden;
-  font-size: var(--base-font-size);
-}
-
 body {
   font-family: "Inter";
   color: #333;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 @media (max-width: 375px) {

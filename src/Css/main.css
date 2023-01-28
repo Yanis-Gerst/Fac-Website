@@ -136,8 +136,9 @@ table {
   --primary-color: #0d6efd;
   --primary-color-accent: #0a58ca;
   --secondary-color: #17a2b8;
+  --secondary-color-accent: #0f92a7;
   --tertiary-color: #333;
-  --tertiary-color-accent: #222;
+  --tertiary-color-accent: #444;
   --base-padding: 1.5rem;
   --stroke-light: #dee2e6;
   --base-font-size: 16px;
@@ -154,17 +155,12 @@ a {
   color: var(--main-text-color);
 }
 
-body,
-html {
-  overflow-x: hidden;
-  font-size: var(--base-font-size);
-}
-
 body {
   font-family: "Inter";
   color: #333;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  overflow-y: auto;
 }
 
 @media (max-width: 375px) {
@@ -380,14 +376,26 @@ body {
 /* Custom Font */
 @font-face {
   font-family: "Inter";
-  src: url(../../font/Inter/static/Inter-Regular.ttf);
+  src: url(../../../font/Inter/static/Inter-Regular.ttf);
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url(../../font/Inter/static/Inter-Bold.ttf);
-  font-weight: bold;
+  src: url(../../../font/Inter/static/Inter-Bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(../../../font/Inter/static/Inter-SemiBold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(../../../font/Inter/static/Inter-Medium.ttf);
+  font-weight: 500;
 }
 
 .navbar-wrapper {
@@ -858,13 +866,8 @@ body {
 }
 
 .sidebar-wrapper {
-  width: 80%;
   background-color: #fefefe;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  padding-left: 1rem;
+  padding-left: 0 1rem;
   -webkit-transition: -webkit-transform 0.5s;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
@@ -895,27 +898,42 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 2.625rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
-.sidebar-chapter-item {
+.sidebar-list__chapter-item {
   opacity: 0.3;
   cursor: pointer;
+  font-size: 1rem;
 }
 
-.sidebar-chapter-item:hover {
+.sidebar-list__chapter-item:hover {
   opacity: 1;
   -webkit-transition: opacity 0.25s;
   transition: opacity 0.25s;
 }
 
-.sidebar-chapter-item--active {
+.sidebar-list__chapter-item--active {
   opacity: 1;
   cursor: auto;
 }
 
+.sheets-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  margin: 0 calc(var(--base-padding) * -1);
+  padding-left: var(--base-padding);
+  padding-right: var(--base-padding);
+  margin-top: 0.5rem;
+  -webkit-animation: fadeIn 0.25s forwards;
+          animation: fadeIn 0.25s forwards;
+  overflow-y: none;
+}
+
 .sheets-slider {
   width: 100vw;
+  max-width: calc(100% + var(--base-padding) * 2);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -942,6 +960,74 @@ body {
       flex-shrink: 0;
 }
 
+.sheets-slider-header {
+  font-size: 1.25rem;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+    z-index: -1;
+    -webkit-transform: translateY(-1.5rem);
+            transform: translateY(-1.5rem);
+  }
+  to {
+    opacity: 1;
+    z-index: 0;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    background-color: #f8f9fa;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    z-index: -1;
+    -webkit-transform: translateY(-1.5rem);
+            transform: translateY(-1.5rem);
+  }
+  to {
+    opacity: 1;
+    z-index: 0;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    background-color: #f8f9fa;
+  }
+}
+
+@-webkit-keyframes slideDown {
+  from {
+    -webkit-transform: translateY(-1.5rem);
+            transform: translateY(-1.5rem);
+  }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    -webkit-transform: translateY(-1.5rem);
+            transform: translateY(-1.5rem);
+  }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@media (min-width: 1200px) {
+  .sheets-wrapper {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    -webkit-animation: slideDown 0.25s;
+            animation: slideDown 0.25s;
+  }
+}
+
 .sheets-card-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -958,6 +1044,10 @@ body {
   width: 170px;
   height: 170px;
   font-size: 12px;
+}
+
+.sheets-card-wrapper h4 {
+  font-size: 1rem;
 }
 
 .sheets-card-desc {
@@ -1024,6 +1114,19 @@ body {
   padding: 0.5em 0.75em;
 }
 
+.sheets-card__button-wrapper--exercices {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.sheets-card__button {
+  font-size: 0.75rem;
+  font-family: "Inter";
+  font-weight: 500;
+}
+
 @media (min-width: 660px) {
   .sheets-card-wrapper {
     font-size: 1rem;
@@ -1036,7 +1139,12 @@ body {
     gap: 1rem;
   }
   .sheets-card__button-wrapper {
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+  .sheets-card__button-wrapper--exercices {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
   }
 }
 
@@ -1100,15 +1208,43 @@ body {
 .ue-title {
   margin-top: 2.5rem;
   margin-bottom: 2rem;
-  font-size: 2rem;
 }
 
-.ue-chapter-header {
-  margin-bottom: 2rem;
-}
-
-.ue-open-menu {
-  font-weight: 700;
-  padding: 0.5em 0.5em !important;
+@media (min-width: 1200px) {
+  .ue-page-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    padding: 0 calc(var(--base-padding) * -1);
+    width: 100%;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+  }
+  .ue-page-wrapper .sidebar-wrapper {
+    width: 25%;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    padding-left: var(--base-padding);
+  }
+  .ue-page-wrapper .ue-page-current-chapter {
+    width: 75%;
+    -webkit-animation: fadeIn 0.25s;
+            animation: fadeIn 0.25s;
+  }
+  .ue-page-header {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 2.25rem 0;
+  }
+  .sidebar-list__item {
+    font-size: 1rem;
+  }
 }
 /*# sourceMappingURL=main.css.map */

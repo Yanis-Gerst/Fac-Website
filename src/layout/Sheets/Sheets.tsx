@@ -9,7 +9,7 @@ interface Props {
 
 const Sheets = ({ revisionSheetsData, exercicesSheetsData }: Props) => {
   return (
-    <div className="sheets-wrapper">
+    <div className="sheets-wrapper" key={Date.now()}>
       <SheetsSlider type="revision" sheetsData={revisionSheetsData} />
       <SheetsSlider type="exercices" sheetsData={exercicesSheetsData} />
     </div>

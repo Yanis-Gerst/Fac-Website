@@ -1,69 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ITeachingUnit } from "../../@types/global";
-import Button from "../../componenents/Button";
 import NavBar from "../../layout/NavBar";
 import Sheets from "../../layout/Sheets";
+import { desktopBreakpoint } from "../LandingPage";
 import SidebarMenu from "./SidebarMenu";
+import ToogleChapterList from "./ToogleChapterList";
 
 interface Props {
   data: ITeachingUnit;
 }
 
 const UePage = ({ data }: Props) => {
-  const [currentChapterIndex, setCurrentChapterIndex] = useState<number>(0);
-  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+  const [activeChapterIndex, setActiveChapterIndex] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
 
-  const chapterToRender = data.chapters[currentChapterIndex];
-  const handleClickOnChapterNav = (e: React.MouseEvent<HTMLLIElement>) => {
-    const chapterSelectedIndex = parseInt(
-      e.currentTarget.getAttribute("data-index") as string
-    );
-    setCurrentChapterIndex(chapterSelectedIndex);
-    setShowSidebar(false);
-  };
+  const chapterToRender = data.chapters[activeChapterIndex];
+  useEffect(() => {
+    const setWindowWidthOnRezize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", setWindowWidthOnRezize);
+    return () => {
+      window.removeEventListener("resize", setWindowWidthOnRezize);
+    };
+  });
+
   return (
     <>
-      <NavBar>
-        <Button
-          type="tertiary"
-          specificStyle="ue-open-menu"
-          onClick={() => setShowSidebar(true)}
-        >
-          Chaptire Menu
-        </Button>
-      </NavBar>
-
+      <NavBar />
       <div className="ue-page-wrapper">
-        <h1 className="ue-title">{data.title}</h1>
+        {windowWidth < desktopBreakpoint ? (
+          <>
+            <h1 className="ue-title text--header4">{data.title}</h1>
+            <ToogleChapterList chapters={data.chapters} />
+          </>
+        ) : (
+          <>
+            <SidebarMenu>
+              {data.chapters.map((chapter, index) => (
+                <li
+                  className={`sidebar-list__chapter-item ${
+                    index == activeChapterIndex &&
+                    "sidebar-list__chapter-item--active"
+                  }`}
+                  key={chapter.title}
+                  onClick={() => setActiveChapterIndex(index)}
+                >
+                  <h4>
+                    Chaptire {index}: {chapter.title}
+                  </h4>
+                </li>
+              ))}
+            </SidebarMenu>
+            <div className="ue-page-current-chapter">
+              <h1 className="ue-page-header text--header3">{data.title}</h1>
+              <Sheets
+                revisionSheetsData={chapterToRender.revionSheets}
+                exercicesSheetsData={chapterToRender.exercicesSheets}
+              />
+            </div>
+          </>
+        )}
 
-        <h2 className="ue-chapter-header text--extra-header5">
-          Chapitre {currentChapterIndex}: {chapterToRender.title}
-        </h2>
-
-        <Sheets
-          revisionSheetsData={chapterToRender.revionSheets}
-          exercicesSheetsData={chapterToRender.exercicesSheets}
-        />
-
-        <SidebarMenu
-          toClose={() => setShowSidebar(false)}
-          appearOnScrean={showSidebar}
-        >
-          {data.chapters.map((chapter, index) => (
-            <li
-              key={chapter.title}
-              onClick={handleClickOnChapterNav}
-              data-index={index}
-              className={`sidebar-chapter-item ${
-                index == currentChapterIndex
-                  ? "sidebar-chapter-item--active"
-                  : ""
-              }`}
-            >
-              Chaptire {index}: {chapter.title}
-            </li>
-          ))}
-        </SidebarMenu>
+        {/* <h1 className="ue-title text--header4">{data.title}</h1> */}
+        {/* <ToogleChapterList chapters={data.chapters} /> */}
       </div>
     </>
   );
