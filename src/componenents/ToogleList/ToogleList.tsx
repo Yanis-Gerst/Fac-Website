@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import "./_toogleChapterList.scss";
+import "./_toogleList.scss";
 interface childProps {
   title: React.ReactNode;
   index: number;
@@ -11,7 +11,7 @@ interface Props {
   children: ReactElement<childProps>[];
 }
 
-const ToogleChapterList = ({ children }: Props) => {
+const ToogleList = ({ children }: Props) => {
   const [activeChapterIndex, setActiveChapterIndex] = useState(-1);
 
   const handleClickOnToogleChapter = (clickedIndex: number) => {
@@ -19,10 +19,11 @@ const ToogleChapterList = ({ children }: Props) => {
       clickedIndex === currentState ? -1 : clickedIndex
     );
   };
+  console.log(children);
   return (
     <div className="toogle-chapter-list">
-      {React.Children.map(children, (child) =>
-        React.cloneElement(child, {
+      {React.Children.map(children, (toogleListItem) =>
+        React.cloneElement(toogleListItem, {
           activeItemIndex: activeChapterIndex,
           setterActiveItemIndex: handleClickOnToogleChapter,
         })
@@ -31,4 +32,4 @@ const ToogleChapterList = ({ children }: Props) => {
   );
 };
 
-export default ToogleChapterList;
+export default ToogleList;

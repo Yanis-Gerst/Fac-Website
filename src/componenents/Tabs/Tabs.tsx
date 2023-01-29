@@ -20,8 +20,8 @@ const Tabs = ({ children, setter, activeTabIndex }: Props) => {
 
   return (
     <div className="tabs">
-      {React.Children.map(children, (tabsItem, index) =>
-        React.cloneElement(tabsItem, {
+      {React.Children.map(children, (tabItem, index) =>
+        React.cloneElement(tabItem, {
           activeTabIndex,
           index,
           handleClick: () => handleClickOnTab(index),

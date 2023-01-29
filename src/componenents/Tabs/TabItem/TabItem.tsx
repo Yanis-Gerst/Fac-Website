@@ -3,11 +3,16 @@ import React from "react";
 interface Props {
   activeTabIndex?: number;
   index?: number;
-  handleCick?: () => void;
+  handleClick?: () => void;
   children: React.ReactNode;
 }
-const TabItem = ({ activeTabIndex, index, handleCick, children }: Props) => {
-  if (activeTabIndex === null || index === null || handleCick === null) {
+const TabItem = ({ activeTabIndex, index, handleClick, children }: Props) => {
+  console.log(activeTabIndex, index, handleClick);
+  if (
+    activeTabIndex === undefined ||
+    index === undefined ||
+    handleClick === undefined
+  ) {
     throw new Error("Use Tabs Component Provider");
   }
 
@@ -17,7 +22,7 @@ const TabItem = ({ activeTabIndex, index, handleCick, children }: Props) => {
         index == activeTabIndex ? "tabs__item--active" : ""
       }`}
       key={index}
-      onClick={handleCick}
+      onClick={handleClick}
     >
       {children}
     </div>

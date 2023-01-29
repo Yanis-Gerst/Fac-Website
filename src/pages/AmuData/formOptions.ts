@@ -1,22 +1,34 @@
+import { IPageDbJson } from "../../@types/global";
 import { IFormOptions } from "../../componenents/Form/Form";
+import pageData from "./pageObject";
 
 export const createInitFormOptions = (
   naviguationFunction: (page: string) => void,
-  setterFormFunction: (option: IFormOptions) => void
+  setterFormFunction: (option: IFormOptions) => void,
+  currentData = pageData,
+  init = true
 ) => {
-  const initOptions: IFormOptions = {
-    "Portail Descartes": naviguationFunction,
-    "Licence Première Année": () => {
-      setterFormFunction({
-        Mathématique: naviguationFunction,
-        Informatique: naviguationFunction,
-        Mécanique: naviguationFunction,
-        Physique: naviguationFunction,
-      });
-    },
-  };
-
-  return initOptions;
+  const result: any = {};
+  Object.keys(currentData).forEach((key) => {
+    if (currentData[key].domainSection) {
+      if (init) result[currentData[key].title as string] = naviguationFunction;
+      else {
+        result[key] = naviguationFunction;
+      }
+    } else {
+      result[key] = () => {
+        setterFormFunction(
+          createInitFormOptions(
+            naviguationFunction,
+            setterFormFunction,
+            currentData[key] as IPageDbJson,
+            false
+          )
+        );
+      };
+    }
+  });
+  return result;
 };
 
 export default createInitFormOptions;

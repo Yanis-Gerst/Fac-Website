@@ -5,8 +5,8 @@ import Sheets from "../../layout/Sheets";
 import { desktopBreakpoint } from "../LandingPage";
 import SidebarMenu from "../../layout/SidebarMenu";
 import SidebarItems from "../../layout/SidebarMenu/SidebarItems";
-import ToogleChapterList from "../../componenents/ToogleChapterList";
-import ToogleChapterItems from "../../componenents/ToogleChapterList/ToogleChapterItems";
+import ToogleChapterList from "../../componenents/ToogleList";
+import ToogleChapterItems from "../../componenents/ToogleList/ToogleListItem";
 
 interface Props {
   ueData: ITeachingUnit;

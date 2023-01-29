@@ -1,5 +1,4 @@
 import React, { ReactElement, useState } from "react";
-import Button from "../Button";
 import "./_form.scss";
 export interface IFormOptions {
   [key: string]: (page: string) => void;
@@ -43,7 +42,7 @@ const Form = ({ options, nextButton }: Props) => {
                 className="form__inputs__input"
               />
               <label htmlFor={key} className="text--base-text">
-                {key}
+                {capitilize(key)}
               </label>
             </li>
           );
@@ -59,6 +58,17 @@ const Form = ({ options, nextButton }: Props) => {
       )}
     </form>
   );
+};
+
+const upperCaseTheFirstLetter = (string: string) => {
+  return string[0].toUpperCase() + string.substring(1);
+};
+
+const capitilize = (string: string) => {
+  return string
+    .split(" ")
+    .map((word) => upperCaseTheFirstLetter(word))
+    .join(" ");
 };
 
 export default Form;

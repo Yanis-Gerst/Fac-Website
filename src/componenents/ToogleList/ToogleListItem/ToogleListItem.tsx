@@ -3,12 +3,12 @@ import { ReactComponent as ToogleArrow } from "../../../../assets/toogleArrow.sv
 
 interface Props {
   title: ReactElement;
-  index: number;
   children: React.ReactNode;
+  index: number;
   activeItemIndex?: number;
   setterActiveItemIndex?: React.Dispatch<number>;
 }
-const ToogleChapterItems = ({
+const ToogleListItem = ({
   title,
   index,
   children,
@@ -40,4 +40,4 @@ const ToogleChapterItems = ({
   );
 };
 
-export default ToogleChapterItems;
+export default ToogleListItem;

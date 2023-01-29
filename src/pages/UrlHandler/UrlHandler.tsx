@@ -5,6 +5,10 @@ import CursusPage from "../CursusPage";
 import ErrorPage from "../ErrorPage";
 import pageDbJson from "../AmuData/pageObject";
 import UePage from "../UePage";
+import {
+  lowerCaseTheFirstLetter,
+  removeFirstCharacterOf,
+} from "../../utils/stringMethods";
 
 type uePageState = {
   pageData: ITeachingUnit;
@@ -61,11 +65,5 @@ const retrieveDataWithKeys = (keys: string[]) => {
 
   return data as ICursus;
 };
-const lowerCaseTheFirstLetter = (string: string) => {
-  return string[0].toLowerCase() + string.substring(1);
-};
 
-const removeFirstCharacterOf = (string: string) => {
-  return string.substring(1);
-};
 export default UrlHandler;

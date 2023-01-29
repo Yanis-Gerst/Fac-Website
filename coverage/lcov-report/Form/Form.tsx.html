@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.64% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>63/63</span>
+                <span class='fraction'>73/74</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.64% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>63/63</span>
+                <span class='fraction'>73/74</span>
             </div>
         
             
@@ -126,7 +126,18 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -178,7 +189,7 @@
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
@@ -189,8 +200,18 @@
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from "react";
-import Button from "../Button";
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { ReactElement, useState } from "react";
 import "./_form.scss";
 export interface IFormOptions {
   [key: string]: (page: string) =&gt; void;
@@ -198,8 +219,9 @@ export interface IFormOptions {
 &nbsp;
 interface Props {
   options: IFormOptions;
+  nextButton?: ReactElement;
 }
-const Form = ({ options }: Props) =&gt; {
+const Form = ({ options, nextButton }: Props) =&gt; {
   const [formValue, setFormValue] = useState("");
   const [path, setPath] = useState("");
 &nbsp;
@@ -233,22 +255,33 @@ const Form = ({ options }: Props) =&gt; {
                 className="form__inputs__input"
               /&gt;
               &lt;label htmlFor={key} className="text--base-text"&gt;
-                {key}
+                {capitilize(key)}
               &lt;/label&gt;
             &lt;/li&gt;
           );
         })}
       &lt;/ul&gt;
 &nbsp;
-      &lt;Button
-        type={"primary"}
-        onClick={handleSubmit}
-        specificStyle="form__submit-button"
-      &gt;
-        Suivant
-      &lt;/Button&gt;
+      {nextButton <span class="branch-0 cbranch-no" title="branch not covered" >? (</span>
+<span class="cstat-no" title="statement not covered" >        React.cloneElement(nextButton, { onClick: handleSubmit })</span>
+      ) : (
+        &lt;button className="form__submit-button" onClick={handleSubmit}&gt;
+          Next
+        &lt;/button&gt;
+      )}
     &lt;/form&gt;
   );
+};
+&nbsp;
+const upperCaseTheFirstLetter = (string: string) =&gt; {
+  return string[0].toUpperCase() + string.substring(1);
+};
+&nbsp;
+const capitilize = (string: string) =&gt; {
+  return string
+    .split(" ")
+    .map((word) =&gt; upperCaseTheFirstLetter(word))
+    .join(" ");
 };
 &nbsp;
 export default Form;
@@ -259,7 +292,7 @@ export default Form;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-01-21T15:59:55.422Z
+                at 2023-01-29T18:25:29.287Z
             </div>
         <script src="../prettify.js"></script>
         <script>

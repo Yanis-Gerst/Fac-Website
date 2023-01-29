@@ -260,6 +260,24 @@ const pageDbJson: IPageDbJson = {
       domainSection: [],
     },
   },
+  l3: {
+    informatique: {
+      title: "L2 Info",
+      domainSection: [],
+    },
+    mathematique: {
+      title: "L2 Mathematique",
+      domainSection: [],
+    },
+    mecanique: {
+      title: "L2 Mecanique",
+      domainSection: [],
+    },
+    physique: {
+      title: "L2 Phyisque",
+      domainSection: [],
+    },
+  },
 };
 
 export default pageDbJson;
