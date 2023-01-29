@@ -60,7 +60,7 @@ $spacing: 1rem;
 }
 
 @media (max-width: $desktop-breakpoint) {
-  .hero-wrapper__discover {
+  .hidden-on-mobile {
     display: none !important;
   }
 }
@@ -109,7 +109,7 @@ $spacing: 1rem;
     width: 100%;
   }
 
-  .hero_section__discover-button {
+  .hidden-on-desktop {
     display: none !important;
   }
 }

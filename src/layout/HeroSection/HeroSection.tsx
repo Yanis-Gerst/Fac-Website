@@ -64,7 +64,7 @@ const HeroSection = () => {
 
           <Button
             type="tertiary-invert"
-            specificStyle="text--header6 hero_section__discover-button"
+            specificStyle="text--header6 hero_section__discover-button hidden-on-desktop"
             onClick={scrollToFeatureSection}
           >
             👇 Découvrir Name
@@ -72,7 +72,7 @@ const HeroSection = () => {
         </div>
       </div>
       <img src={heroIllustration} className="hero-section__illustration" />
-      <div className="hero-wrapper__discover">
+      <div className="hero-wrapper__discover hidden-on-mobile">
         <p className="text--semi-header6">Découvrir Name</p>
         <Button
           type="tertiary-invert"

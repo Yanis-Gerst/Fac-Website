@@ -12,7 +12,7 @@
   }
 }
 
-.toogle-chaper-list {
+.toogle-chapter-list {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -25,11 +25,4 @@
 
 .toogle-item__svg--active {
   transform: rotate(90deg);
-}
-
-@media (min-width: $desktop-breakpoint) {
-  .toogle-item__header {
-    gap: 1rem;
-    margin-left: calc(var(--base-padding) * -1 + 1rem);
-  }
 }

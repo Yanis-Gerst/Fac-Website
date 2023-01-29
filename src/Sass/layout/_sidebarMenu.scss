@@ -4,14 +4,6 @@
   transition: transform 0.5s;
 }
 
-.slideIn {
-  transform: translateX(0);
-}
-
-.slideOut {
-  transform: translateX(100%);
-}
-
 .sidebar-cross {
   cursor: pointer;
   margin-top: 1rem;

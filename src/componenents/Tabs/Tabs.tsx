@@ -1,34 +1,32 @@
-import React, { Children } from "react";
+import React, { ReactElement } from "react";
 import "./_tabs.scss";
+
 interface Props {
-  children: React.ReactNode;
+  children: ReactElement<ChildProps>[];
   setter: React.Dispatch<number>;
   activeTabIndex: number;
 }
+
+interface ChildProps {
+  activeTabIndex?: number;
+  index?: number;
+  handleClick?: () => void;
+}
+
 const Tabs = ({ children, setter, activeTabIndex }: Props) => {
-  const toRender = Children.toArray(children);
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const dataIndex = parseInt(
-      e.currentTarget.getAttribute("data-index") as string
-    );
-    setter(dataIndex);
+  const handleClickOnTab = (clickedIndex: number) => {
+    setter(clickedIndex);
   };
+
   return (
     <div className="tabs">
-      {toRender.map((element, index) => {
-        return (
-          <div
-            className={`tabs__item text--small-text ${
-              index == activeTabIndex ? "tabs__item--active" : ""
-            }`}
-            key={index}
-            data-index={index}
-            onClick={handleClick}
-          >
-            {element}
-          </div>
-        );
-      })}
+      {React.Children.map(children, (tabsItem, index) =>
+        React.cloneElement(tabsItem, {
+          activeTabIndex,
+          index,
+          handleClick: () => handleClickOnTab(index),
+        })
+      )}
     </div>
   );
 };

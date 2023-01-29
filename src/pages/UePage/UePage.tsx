@@ -3,18 +3,20 @@ import { ITeachingUnit } from "../../@types/global";
 import NavBar from "../../layout/NavBar";
 import Sheets from "../../layout/Sheets";
 import { desktopBreakpoint } from "../LandingPage";
-import SidebarMenu from "./SidebarMenu";
-import ToogleChapterList from "./ToogleChapterList";
+import SidebarMenu from "../../layout/SidebarMenu";
+import SidebarItems from "../../layout/SidebarMenu/SidebarItems";
+import ToogleChapterList from "../../componenents/ToogleChapterList";
+import ToogleChapterItems from "../../componenents/ToogleChapterList/ToogleChapterItems";
 
 interface Props {
-  data: ITeachingUnit;
+  ueData: ITeachingUnit;
 }
 
-const UePage = ({ data }: Props) => {
+const UePage = ({ ueData }: Props) => {
   const [activeChapterIndex, setActiveChapterIndex] = useState<number>(0);
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
 
-  const chapterToRender = data.chapters[activeChapterIndex];
+  const chapterToRender = ueData.chapters[activeChapterIndex];
   useEffect(() => {
     const setWindowWidthOnRezize = () => {
       setWindowWidth(window.innerWidth);
@@ -31,29 +33,37 @@ const UePage = ({ data }: Props) => {
       <div className="ue-page-wrapper">
         {windowWidth < desktopBreakpoint ? (
           <>
-            <h1 className="ue-title text--header4">{data.title}</h1>
-            <ToogleChapterList chapters={data.chapters} />
+            <h1 className="ue-title text--header4">{ueData.title}</h1>
+            <ToogleChapterList>
+              {ueData.chapters.map((chapter, index) => (
+                <ToogleChapterItems
+                  key={chapter.title}
+                  title={
+                    <h2 className="text--semi-header4">
+                      Chaptire {index}: {chapter.title}
+                    </h2>
+                  }
+                  index={index}
+                >
+                  <Sheets
+                    revisionSheetsData={chapter.revionSheets}
+                    exercicesSheetsData={chapter.exercicesSheets}
+                  />
+                </ToogleChapterItems>
+              ))}
+            </ToogleChapterList>
           </>
         ) : (
           <>
             <SidebarMenu>
-              {data.chapters.map((chapter, index) => (
-                <li
-                  className={`sidebar-list__chapter-item ${
-                    index == activeChapterIndex &&
-                    "sidebar-list__chapter-item--active"
-                  }`}
-                  key={chapter.title}
-                  onClick={() => setActiveChapterIndex(index)}
-                >
-                  <h4>
-                    Chaptire {index}: {chapter.title}
-                  </h4>
-                </li>
-              ))}
+              <SidebarItems
+                chapters={ueData.chapters}
+                activeItemIndex={activeChapterIndex}
+                setActiveItemIndex={setActiveChapterIndex}
+              />
             </SidebarMenu>
             <div className="ue-page-current-chapter">
-              <h1 className="ue-page-header text--header3">{data.title}</h1>
+              <h1 className="ue-page-header text--header3">{ueData.title}</h1>
               <Sheets
                 revisionSheetsData={chapterToRender.revionSheets}
                 exercicesSheetsData={chapterToRender.exercicesSheets}
@@ -61,9 +71,6 @@ const UePage = ({ data }: Props) => {
             </div>
           </>
         )}
-
-        {/* <h1 className="ue-title text--header4">{data.title}</h1> */}
-        {/* <ToogleChapterList chapters={data.chapters} /> */}
       </div>
     </>
   );

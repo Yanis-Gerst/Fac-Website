@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import Button from "../Button";
 import "./_form.scss";
 export interface IFormOptions {
@@ -7,8 +7,9 @@ export interface IFormOptions {
 
 interface Props {
   options: IFormOptions;
+  nextButton?: ReactElement;
 }
-const Form = ({ options }: Props) => {
+const Form = ({ options, nextButton }: Props) => {
   const [formValue, setFormValue] = useState("");
   const [path, setPath] = useState("");
 
@@ -49,13 +50,13 @@ const Form = ({ options }: Props) => {
         })}
       </ul>
 
-      <Button
-        type={"primary"}
-        onClick={handleSubmit}
-        specificStyle="form__submit-button"
-      >
-        Suivant
-      </Button>
+      {nextButton ? (
+        React.cloneElement(nextButton, { onClick: handleSubmit })
+      ) : (
+        <button className="form__submit-button" onClick={handleSubmit}>
+          Next
+        </button>
+      )}
     </form>
   );
 };

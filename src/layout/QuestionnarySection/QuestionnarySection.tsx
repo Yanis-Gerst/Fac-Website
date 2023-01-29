@@ -1,27 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "../../componenents/Form";
-import { IFormOptions } from "../../componenents/Form/Form";
 import questionnaryIllustration from "../../../assets/questionnaryIllustration.svg";
-
-const createInitFormOptions = (
-  naviguationFunction: (page: string) => void,
-  setterFormFunction: (option: IFormOptions) => void
-) => {
-  const initOptions: IFormOptions = {
-    "Portail Descartes": naviguationFunction,
-    "Licence Première Année": () => {
-      setterFormFunction({
-        Mathématique: naviguationFunction,
-        Informatique: naviguationFunction,
-        Mécanique: naviguationFunction,
-        Physique: naviguationFunction,
-      });
-    },
-  };
-
-  return initOptions;
-};
+import createInitFormOptions from "../../pages/AmuData/formOptions";
+import { IFormOptions } from "../../componenents/Form/Form";
+import Button from "../../componenents/Button";
 
 const QuestionnarySection = () => {
   const [formOptions, setFormOptions] = useState<IFormOptions>({});
@@ -42,7 +25,14 @@ const QuestionnarySection = () => {
       <h1 className="text--header5 questionnary-section__header">
         Quelle est ton cursus ?
       </h1>
-      <Form options={formOptions} />
+      <Form
+        options={formOptions}
+        nextButton={
+          <Button type="primary" specificStyle="form__submit-button">
+            Suivant
+          </Button>
+        }
+      />
     </div>
   );
 };

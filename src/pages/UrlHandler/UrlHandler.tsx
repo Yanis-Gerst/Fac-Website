@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { ICursus, ITeachingUnit } from "../../@types/global";
 import CursusPage from "../CursusPage";
 import ErrorPage from "../ErrorPage";
-import pageDbJson from "../pageObject";
+import pageDbJson from "../AmuData/pageObject";
 import UePage from "../UePage";
 
 type uePageState = {
@@ -22,9 +22,9 @@ const UrlHandler = () => {
     <>
       {dataOfCurrentPage ? (
         currentState ? (
-          <UePage data={dataOfCurrentPage as ITeachingUnit} />
+          <UePage ueData={dataOfCurrentPage as ITeachingUnit} />
         ) : (
-          <CursusPage data={dataOfCurrentPage as ICursus} />
+          <CursusPage cursusData={dataOfCurrentPage as ICursus} />
         )
       ) : (
         <ErrorPage />

@@ -6,17 +6,21 @@ import { Link } from "react-router-dom";
 interface Props {
   domains: ITeachingDomain[];
   activeTabIndex: number;
-  semester: 1 | 2;
+  semesterNumber: 1 | 2;
 }
 
-export const TeachingUnit = ({ domains, activeTabIndex, semester }: Props) => {
+export const TeachingUnit = ({
+  domains,
+  activeTabIndex,
+  semesterNumber,
+}: Props) => {
   return (
     <div className="teach-unit-card">
       <h2 className="teach-unit-card__header text--header6">
-        Semetre {semester}
+        Semetre {semesterNumber}
       </h2>
       <ul className="teach-unit-card__list-item">
-        {domains[activeTabIndex][`teachingUnitsS${semester}`].map(
+        {domains[activeTabIndex][`teachingUnitsS${semesterNumber}`].map(
           (teachUnit) => (
             <li className="teach-unit-card__item" key={teachUnit.title}>
               <Link

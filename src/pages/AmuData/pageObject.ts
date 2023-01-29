@@ -1,4 +1,4 @@
-import { IPageDbJson } from "../@types/global";
+import { IPageDbJson } from "../../@types/global";
 
 const pageDbJson: IPageDbJson = {
   portailDescartes: {
