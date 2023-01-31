@@ -30,16 +30,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
@@ -117,36 +117,36 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">80x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
-<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">85x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { ReactElement } from "react";
@@ -177,14 +177,14 @@ const ToogleListItem = ({
             &lt;ToogleArrow
               onClick={<span class="fstat-no" title="function not covered" >() =&gt; setterActiveItemIndex(index)}</span>
               className={
-                index == activeItemIndex <span class="branch-0 cbranch-no" title="branch not covered" >? "toogle-item__svg--active" </span>: ""
+                index == activeItemIndex ? "toogle-item__svg--active" : ""
               }
             /&gt;
             {React.cloneElement(title, {
-              onClick: <span class="fstat-no" title="function not covered" >() =&gt; setterActiveItemIndex(index),</span>
+              onClick: () =&gt; setterActiveItemIndex(index),
             })}
           &lt;/div&gt;
-          {index === activeItemIndex<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; children}</span>
+          {index === activeItemIndex &amp;&amp; children}
         &lt;/&gt;
       &lt;/div&gt;
     &lt;/&gt;
@@ -199,7 +199,7 @@ export default ToogleListItem;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-01-29T18:25:29.287Z
+                at 2023-01-30T10:41:36.756Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

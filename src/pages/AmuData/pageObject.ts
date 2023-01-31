@@ -1,5 +1,5 @@
 import { IPageDbJson } from "../../@types/global";
-
+import { nanoid } from "nanoid";
 const pageDbJson: IPageDbJson = {
   portailDescartes: {
     title: "Portail Descartes",
@@ -21,6 +21,7 @@ const pageDbJson: IPageDbJson = {
                     like: 0,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Résumé Démonstration",
@@ -30,6 +31,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Résumé Démonstration 2",
@@ -39,6 +41,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Résumé Démonstration 3",
@@ -48,6 +51,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                 ],
                 exercicesSheets: [
@@ -59,6 +63,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Exam 2021",
@@ -68,6 +73,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Exam 2022",
@@ -77,6 +83,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Exam 2023",
@@ -86,6 +93,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                 ],
               },
@@ -100,6 +108,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Résumée spécial Partiel",
@@ -109,6 +118,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Savoir quand utiliser les bonnes formules",
@@ -118,6 +128,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                 ],
                 exercicesSheets: [
@@ -129,6 +140,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Partiel 2022",
@@ -138,6 +150,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                   {
                     title: "Planche 1",
@@ -147,6 +160,7 @@ const pageDbJson: IPageDbJson = {
                     like: 24,
                     yearOfPublication: 2023,
                     pdfUrl: "",
+                    id: nanoid(),
                   },
                 ],
               },

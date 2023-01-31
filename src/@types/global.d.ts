@@ -12,6 +12,7 @@ type publicationUnit = {
   like: number;
   yearOfPublication: number;
   pdfUrl: string;
+  id: string;
 };
 type IChapterUnit = {
   title: string;

@@ -3,24 +3,11 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import UrlHandler from "../UrlHandler";
-import { IPageDbJson, ITeachingDomain } from "../../@types/global";
+import { ITeachingDomain } from "../../@types/global";
 import { BrowserRouter } from "react-router-dom";
+import mockPageObject from "../../../__mocks__/mockPageObject";
 
-//TODO: Revoir Typo IPageDbJson (Pb lors de l'utilisation)
-const pageDbJson: IPageDbJson = {
-  PortailDescartes: {
-    title: "Portail Descartes",
-    domainSection: [],
-  },
-  L2: {
-    Informatique: {
-      title: "L1 Info",
-      domainSection: [],
-    },
-  },
-};
-
-const mockPathName = "/PortailDescartes";
+let mockPathName = "/PortailDescartes";
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useLocation: jest.fn(() => ({
@@ -28,32 +15,39 @@ jest.mock("react-router-dom", () => ({
   })),
 }));
 
+jest.mock("../AmuData/pageObject", () => {
+  const mockPageObject = jest.requireActual(
+    "../../../__mocks__/mockPageObject"
+  );
+  return mockPageObject;
+});
+
 const user = userEvent.setup();
 
 test("Retrieve The Right Page With Url", async () => {
   render(<UrlHandler />, { wrapper: BrowserRouter });
 
-  const domainSection = pageDbJson.PortailDescartes
+  const domainSection = mockPageObject.portailDescartes
     .domainSection as ITeachingDomain[];
 
-  expect(screen.queryByText("Liscence Deuxième année")).not.toBeInTheDocument();
+  expect(screen.queryByText("L2 Info")).not.toBeInTheDocument();
   expect(
-    screen.getByText(pageDbJson.PortailDescartes.title as string)
+    screen.getAllByText(mockPageObject.portailDescartes.title as string)[0]
   ).toBeInTheDocument();
 
   domainSection.forEach((domain) => {
-    expect(screen.getByText(domain.title)).toBeInTheDocument();
+    expect(screen.getAllByText(domain.title)[0]).toBeInTheDocument();
   });
 });
 
 describe("Tab Render Proprely onClick", () => {
-  render(<UrlHandler />, { wrapper: BrowserRouter });
-  const domainSection = pageDbJson.PortailDescartes
+  const domainSection = mockPageObject.portailDescartes
     .domainSection as ITeachingDomain[];
 
   test.each(domainSection)(
     "Tab $title render Proprely",
     async ({ title: domainTitle, teachingUnitsS1 }) => {
+      render(<UrlHandler />, { wrapper: BrowserRouter });
       await user.click(screen.getByText(domainTitle));
 
       teachingUnitsS1.forEach((teachingUnit) => {
@@ -64,13 +58,7 @@ describe("Tab Render Proprely onClick", () => {
 });
 
 test("Error Page Render when Url doesn't exists", async () => {
-  const mockPathName = "localhost:1234/azerty";
-  jest.mock("react-router-dom", () => ({
-    ...jest.requireActual("react-router-dom"),
-    useLocation: jest.fn(() => ({
-      pathname: mockPathName,
-    })),
-  }));
+  mockPathName = "/azerty";
 
   render(<UrlHandler />, { wrapper: BrowserRouter });
 

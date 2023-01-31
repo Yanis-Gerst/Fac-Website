@@ -44,8 +44,27 @@
   accent-color: var(--primary-color);
 }
 
-.form__submit-button {
+.form-button-wrapper {
+  display: flex;
   width: 100%;
+  gap: 1rem;
+}
+
+.form-button-wrapper--back-button-disable button:last-of-type {
+  background-color: #68717a;
+  pointer-events: none;
+}
+
+.form__next-button {
   font-size: 1rem;
   font-weight: 700;
+  flex-basis: 70%;
+  order: 2;
+}
+
+.form__back-button {
+  flex-basis: 30%;
+  font-size: 1rem;
+  font-weight: 700;
+  order: 1;
 }

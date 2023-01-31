@@ -13,6 +13,7 @@ const QuestionnarySection = () => {
   useEffect(() => {
     const initOptions = createInitFormOptions(naviguate, setFormOptions);
     setFormOptions(initOptions);
+    console.log("Stae Change");
   }, []);
 
   return (
@@ -27,9 +28,15 @@ const QuestionnarySection = () => {
       </h1>
       <Form
         options={formOptions}
+        setOptions={setFormOptions}
         nextButton={
-          <Button type="primary" specificStyle="form__submit-button">
+          <Button type="primary" specificStyle="form__next-button">
             Suivant
+          </Button>
+        }
+        backButton={
+          <Button type="secondary" specificStyle="form__back-button">
+            Back
           </Button>
         }
       />

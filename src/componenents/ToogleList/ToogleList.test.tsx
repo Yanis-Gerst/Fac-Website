@@ -30,7 +30,7 @@ const getContentText = (index: number) => `Content corresponding to ${index}`;
 describe("Title Display Correctly", () => {
   test.each([toogleIndexArray])("Title %i render", async (indexElt) => {
     render(testDomElement());
-    expect(screen).getByText(`Title ${indexElt}`).toBeInTheDocument();
+    expect(screen.getByText(`Title ${indexElt}`)).toBeInTheDocument();
   });
 });
 

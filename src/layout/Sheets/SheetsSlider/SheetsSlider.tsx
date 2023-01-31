@@ -16,7 +16,7 @@ const SheetsSlider = ({ sheetsData, type }: Props) => {
       </h3>
       <div className="sheets-slider">
         {sheetsData.map((sheet) => (
-          <SheetsCard key={sheet.title} type={type} sheetData={sheet} />
+          <SheetsCard key={sheet.id} type={type} sheetData={sheet} />
         ))}
       </div>
     </>

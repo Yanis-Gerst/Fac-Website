@@ -7,7 +7,6 @@ interface Props {
   children: React.ReactNode;
 }
 const TabItem = ({ activeTabIndex, index, handleClick, children }: Props) => {
-  console.log(activeTabIndex, index, handleClick);
   if (
     activeTabIndex === undefined ||
     index === undefined ||

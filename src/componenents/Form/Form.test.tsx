@@ -75,6 +75,24 @@ describe("Form give the Right Path Of Options as argurments", () => {
   });
 });
 
+test("Back Button work", async () => {
+  const optionsToTest: IFormOptions = createOptionsToTest(
+    placeholderFunction,
+    placeholderFunction
+  );
+  render(<Form options={optionsToTest} />);
+
+  const primaryOptions = screen.getByText("Primary");
+  const submitButton = screen.getByRole("button");
+  const backButton = screen.getByText("Back");
+
+  await user.click(primaryOptions);
+  await user.click(submitButton);
+  await user.click(backButton);
+
+  expect(primaryOptions).toBeInTheDocument();
+  expect(screen.getByText("Tertiary")).toBeInTheDocument();
+});
 const createOptionsToTest = (
   setterFunction: (options: IFormOptions) => void,
   naviguationFunction: (page: string) => void

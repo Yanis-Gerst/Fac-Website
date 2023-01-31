@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.42% </span>
+                <span class="strong">98.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>64/70</span>
+                <span class='fraction'>68/69</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.33% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/12</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.42% </span>
+                <span class="strong">98.55% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>64/70</span>
+                <span class='fraction'>68/69</span>
             </div>
         
             
@@ -132,8 +132,12 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -155,13 +159,13 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -174,8 +178,8 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -188,32 +192,31 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
 import { useLocation } from "react-router-dom";
 import { ICursus, ITeachingUnit } from "../../@types/global";
 import CursusPage from "../CursusPage";
 import ErrorPage from "../ErrorPage";
-import pageDbJson from "../pageObject";
+import pageDbJson from "../AmuData/pageObject";
 import UePage from "../UePage";
+import {
+  lowerCaseTheFirstLetter,
+  removeFirstCharacterOf,
+} from "../../utils/stringMethods";
 &nbsp;
 type uePageState = {
   pageData: ITeachingUnit;
 };
+&nbsp;
 const UrlHandler = () =&gt; {
   const location = useLocation();
   const currentUrl = location.pathname;
@@ -226,12 +229,12 @@ const UrlHandler = () =&gt; {
     &lt;&gt;
       {dataOfCurrentPage ? (
         currentState <span class="branch-0 cbranch-no" title="branch not covered" >? (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;UePage data={dataOfCurrentPage as ITeachingUnit} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;UePage ueData={dataOfCurrentPage as ITeachingUnit} /&gt;</span>
         ) : (
-          &lt;CursusPage data={dataOfCurrentPage as ICursus} /&gt;
+          &lt;CursusPage cursusData={dataOfCurrentPage as ICursus} /&gt;
         )
-      ) <span class="branch-0 cbranch-no" title="branch not covered" >: (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;ErrorPage /&gt;</span>
+      ) : (
+        &lt;ErrorPage /&gt;
       )}
     &lt;/&gt;
   );
@@ -243,9 +246,9 @@ const retreiveDataPageFromUrl = (url: string) =&gt; {
   let data: ICursus | null;
   try {
     data = retrieveDataWithKeys(keys);
-  } <span class="branch-0 cbranch-no" title="branch not covered" >catch {</span>
-<span class="cstat-no" title="statement not covered" >    data = null;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  } catch {
+    data = null;
+  }
   return data;
 };
 &nbsp;
@@ -257,21 +260,15 @@ const parseUrl = (url: string) =&gt; {
 const retrieveDataWithKeys = (keys: string[]) =&gt; {
   let data: any = pageDbJson;
   keys.forEach((key) =&gt; {
-    if (data[key] == undefined) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      throw new Error("Url have no defined page");</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    if (data[key] == undefined) {
+      throw new Error("Url have no defined page");
+    }
     data = data[key];
   });
 &nbsp;
   return data as ICursus;
 };
-const lowerCaseTheFirstLetter = (string: string) =&gt; {
-  return string[0].toLowerCase() + string.substring(1);
-};
 &nbsp;
-const removeFirstCharacterOf = (string: string) =&gt; {
-  return string.substring(1);
-};
 export default UrlHandler;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -280,7 +277,7 @@ export default UrlHandler;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-01-21T16:22:45.324Z
+                at 2023-01-30T10:42:53.146Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

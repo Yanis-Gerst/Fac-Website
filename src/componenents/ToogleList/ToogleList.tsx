@@ -19,7 +19,7 @@ const ToogleList = ({ children }: Props) => {
       clickedIndex === currentState ? -1 : clickedIndex
     );
   };
-  console.log(children);
+
   return (
     <div className="toogle-chapter-list">
       {React.Children.map(children, (toogleListItem) =>
