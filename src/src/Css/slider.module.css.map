@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EACd,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,GAAG,EAAE,IAAI;CACV;;AAED,AAAA,OAAO,CAAC;EACN,OAAO,EAAE,QAAQ;EAEjB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG;EACnB,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,KAAK;EAEZ,UAAU,EAAE,MAAM;EAClB,gBAAgB,EAAE,WAAW;EAC7B,kBAAkB,EAAE,IAAI;EAAE,2BAA2B;EACrD,eAAe,EAAE,IAAI;EAAE,aAAa;CAKrC;;AAhBD,AAaE,OAbK,AAaJ,mBAAmB,CAAC;EACnB,OAAO,EAAE,IAAI;EAAE,uBAAuB;CACvC",
+    "sources": [
+        "../../componenents/Slider/slider.module.scss"
+    ],
+    "names": [],
+    "file": "slider.module.css"
+}

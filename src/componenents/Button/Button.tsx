@@ -1,5 +1,5 @@
 import React from "react";
-import "./_button.scss";
+import styles from "./button.module.scss";
 
 type buttonTypes = "primary" | "secondary" | "tertiary";
 type buttonTypesInvert =
@@ -18,7 +18,9 @@ interface Props {
 const Button = ({ type, specificStyle, onClick, children }: Props) => {
   return (
     <button
-      className={`btn btn--${type} ${specificStyle ? specificStyle : ""}`}
+      className={`${styles.btn} ${styles[`btn--${type}`]} ${
+        specificStyle ? specificStyle : ""
+      }`}
       onClick={onClick}
     >
       {children}

@@ -1,0 +1,100 @@
+.form {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form__inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.form__inputs li {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2em auto;
+      grid-template-columns: 2em auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  border: 1px solid var(--stroke-light);
+  border-radius: 4px;
+  padding: 0.67em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.form__inputs li:has(> input:checked) {
+  border-color: var(--primary-color);
+}
+
+.form__inputs li > * {
+  cursor: pointer;
+}
+
+.form__inputs__input {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--primary-color);
+}
+
+.form-button-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
+
+.form-button-wrapper--back-button-disable button:last-of-type {
+  background-color: #68717a;
+  pointer-events: none;
+}
+
+.form__next-button {
+  font-size: 1rem;
+  font-weight: 700;
+  -ms-flex-preferred-size: 70%;
+      flex-basis: 70%;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+.form__back-button {
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
+  font-size: 1rem;
+  font-weight: 700;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+/*# sourceMappingURL=form.module.css.map */

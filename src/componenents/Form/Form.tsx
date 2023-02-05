@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import "./_form.scss";
+import styles from "./form.module.scss";
+
 export interface IFormOptions {
   [key: string]: (page: string) => void;
 }
@@ -44,8 +45,8 @@ const Form = ({ options, setOptions, nextButton, backButton }: Props) => {
   }, [Object.keys(options)[0]]);
 
   return (
-    <form className="form">
-      <ul className="form__inputs">
+    <form className={styles.form}>
+      <ul className={styles["form__inputs"]}>
         {Object.keys(options).map((key) => {
           return (
             <li onClick={handleClickOnInput} key={key}>
@@ -55,7 +56,7 @@ const Form = ({ options, setOptions, nextButton, backButton }: Props) => {
                 key={key}
                 id={key}
                 value={key}
-                className="form__inputs__input"
+                className={styles["form__inputs__input"]}
               />
               <label htmlFor={key} className="text--base-text">
                 {capitilize(key)}
@@ -65,15 +66,18 @@ const Form = ({ options, setOptions, nextButton, backButton }: Props) => {
         })}
       </ul>
       <div
-        className={`form-button-wrapper ${
+        className={`${styles["form-button-wrapper"]} ${
           optionsHistory.length <= 1 &&
-          "form-button-wrapper--back-button-disable"
+          styles["form-button-wrapper--back-button-disable"]
         }`}
       >
         {nextButton ? (
           React.cloneElement(nextButton, { onClick: handleNextSubmit })
         ) : (
-          <button className="form__submit-button" onClick={handleNextSubmit}>
+          <button
+            className={styles["form__submit-button"]}
+            onClick={handleNextSubmit}
+          >
             Next
           </button>
         )}

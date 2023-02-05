@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from "react";
-import "./_toogleList.scss";
+import styles from "./toogleList.module.scss";
+
 interface childProps {
   title: React.ReactNode;
   index: number;
@@ -21,7 +22,7 @@ const ToogleList = ({ children }: Props) => {
   };
 
   return (
-    <div className="toogle-chapter-list">
+    <div className={styles["toogle-chapter-list"]}>
       {React.Children.map(children, (toogleListItem) =>
         React.cloneElement(toogleListItem, {
           activeItemIndex: activeChapterIndex,

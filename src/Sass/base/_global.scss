@@ -30,6 +30,7 @@ body {
   color: #333;
   box-sizing: border-box;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @media (max-width: 375px) {

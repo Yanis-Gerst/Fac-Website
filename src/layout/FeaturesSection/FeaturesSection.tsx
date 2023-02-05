@@ -5,21 +5,21 @@ import { IFeature } from "../../@types/global";
 import FeatureCard from "../FeatureCard";
 import FeatureGridItem from "../FeatureGrid/FeatureGridItem";
 
-import { desktopBreakpoint } from "../../pages/LandingPage";
+import { desktopBreakpoint } from "../../pages";
 
 interface Props {
   featuresList: IFeature[];
 }
 const FeaturesSection = ({ featuresList }: Props) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    const handleConditionalRenderingOnResize = () => {
+    const updateWindowStateOnResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    window.addEventListener("resize", handleConditionalRenderingOnResize);
+    window.addEventListener("resize", updateWindowStateOnResize);
     return () => {
-      window.removeEventListener("resize", handleConditionalRenderingOnResize);
+      window.removeEventListener("resize", updateWindowStateOnResize);
     };
   });
 

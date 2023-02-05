@@ -1,0 +1,32 @@
+.toogle-item__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: calc(var(--base-padding) / 4);
+  margin-left: calc(var(--base-padding) * -1 + var(--base-padding) / 4);
+}
+
+.toogle-item__header svg {
+  fill: none;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.toogle-chaper-list__toogle-item h2 {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.toogle-item__svg--active {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+/*# sourceMappingURL=toogleListItem.module.css.map */

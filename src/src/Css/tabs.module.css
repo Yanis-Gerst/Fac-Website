@@ -1,0 +1,22 @@
+.tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 0 1.5rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (min-width: 500px) {
+  .tabs {
+    max-width: 700px;
+    width: 80vw;
+    margin: 0 auto;
+  }
+}
+/*# sourceMappingURL=tabs.module.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,oBAAoB,CAAC;EACnB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,GAAG,EAAE,IAAI;CACV",
+    "sources": [
+        "../../componenents/ToogleList/toogleList.module.scss"
+    ],
+    "names": [],
+    "file": "toogleList.module.css"
+}

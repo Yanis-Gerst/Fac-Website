@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import "./_tabs.scss";
+import styles from "./tabs.module.scss";
 
 interface Props {
   children: ReactElement<ChildProps>[];
@@ -19,7 +19,7 @@ const Tabs = ({ children, setter, activeTabIndex }: Props) => {
   };
 
   return (
-    <div className="tabs">
+    <div className={styles["tabs"]}>
       {React.Children.map(children, (tabItem, index) =>
         React.cloneElement(tabItem, {
           activeTabIndex,

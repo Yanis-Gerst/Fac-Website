@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG;EACnB,MAAM,EAAE,QAAQ;EAChB,eAAe,EAAE,aAAa;CAC/B;;AAED,MAAM,EAAE,SAAS,EAAE,KAAK;EACtB,AAAA,KAAK,CAAC;IACJ,SAAS,EAAE,KAAK;IAChB,KAAK,EAAE,IAAI;IACX,MAAM,EAAE,MAAM;GACf",
+    "sources": [
+        "../../componenents/Tabs/tabs.module.scss"
+    ],
+    "names": [],
+    "file": "tabs.module.css"
+}

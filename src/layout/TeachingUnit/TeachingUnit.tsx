@@ -1,7 +1,10 @@
 import React from "react";
 import { ITeachingDomain } from "../../@types/global";
-import { ReactComponent as RightArrow } from "../../../assets/rightArrow.svg";
-import { Link } from "react-router-dom";
+import rightArrow from "../../../public/assets/rightArrow.svg";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { lowerCaseTheFirstLetter } from "../../utils/stringMethods";
 
 interface Props {
   domains: ITeachingDomain[];
@@ -14,6 +17,7 @@ export const TeachingUnit = ({
   activeTabIndex,
   semesterNumber,
 }: Props) => {
+  const router = useRouter();
   return (
     <div className="teach-unit-card">
       <h2 className="teach-unit-card__header text--header6">
@@ -21,22 +25,38 @@ export const TeachingUnit = ({
       </h2>
       <ul className="teach-unit-card__list-item">
         {domains[activeTabIndex][`teachingUnitsS${semesterNumber}`].map(
-          (teachUnit) => (
-            <li className="teach-unit-card__item" key={teachUnit.title}>
-              <Link
-                to={`${teachUnit.title.replace(" ", "")}`}
-                relative="path"
-                state={{ pageData: teachUnit }}
-              >
-                {teachUnit.title}
-              </Link>
-              <RightArrow className="teach-unit-card__arrow" />
-            </li>
-          )
+          (teachUnit) => {
+            const urlTeachUnit = parseTileToUrl(teachUnit.title);
+
+            return (
+              <li className="teach-unit-card__item" key={teachUnit.title}>
+                <Link
+                  href={`${router.asPath}/${urlTeachUnit.replace(" ", "")}`}
+                >
+                  {teachUnit.title}
+                </Link>
+                <Image
+                  src={rightArrow}
+                  className="teach-unit-card__arrow"
+                  alt="une flèche qui pointe vers la droite"
+                />
+              </li>
+            );
+          }
         )}
       </ul>
     </div>
   );
+};
+
+const parseTileToUrl = (teachUnit: string) => {
+  let urlTeachUnit = lowerCaseTheFirstLetter(teachUnit);
+  urlTeachUnit = removeAccentFrom(urlTeachUnit);
+  return urlTeachUnit;
+};
+
+const removeAccentFrom = (string: string) => {
+  return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
 
 export default TeachingUnit;

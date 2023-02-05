@@ -1,5 +1,5 @@
 import React, { Children } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface Props {
   children?: React.ReactNode;
@@ -10,7 +10,7 @@ const NavBar = ({ children }: Props) => {
   return (
     <div className="navbar-wrapper">
       <header className="nav-bar">
-        <Link to="/" className="text--header5">
+        <Link href="/" className="text--header5">
           Name
         </Link>
         <nav className="nav-bar__naviguation">

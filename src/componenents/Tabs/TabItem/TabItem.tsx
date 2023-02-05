@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./tabItem.module.scss";
 
 interface Props {
   activeTabIndex?: number;
@@ -17,8 +18,8 @@ const TabItem = ({ activeTabIndex, index, handleClick, children }: Props) => {
 
   return (
     <div
-      className={`tabs__item text--small-text ${
-        index == activeTabIndex ? "tabs__item--active" : ""
+      className={`${styles["tabs__item"]} text--small-text ${
+        index == activeTabIndex ? styles["tabs__item--active"] : ""
       }`}
       key={index}
       onClick={handleClick}

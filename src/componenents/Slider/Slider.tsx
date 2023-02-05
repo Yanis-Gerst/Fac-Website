@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import Pagination from "./Pagination/Pagination";
-import "./_slider.scss";
+import styles from "./slider.module.scss";
 
 interface Props {
   children: React.ReactNode;
@@ -20,7 +20,7 @@ const FeaturesSection = ({ children, pagination = true }: Props) => {
     if (!sliderElement.current) return;
     sliderElement.current.style.marginLeft = "0";
     const leftDistance = sliderElement.current.getBoundingClientRect().left;
-    sliderElement.current.style.marginLeft = `-${leftDistance}`;
+    sliderElement.current.style.marginLeft = `-${leftDistance}px`;
   };
 
   useLayoutEffect(() => {
@@ -56,8 +56,8 @@ const FeaturesSection = ({ children, pagination = true }: Props) => {
   };
 
   return (
-    <div className="slider-wrapper">
-      <div className="slider" ref={sliderElement}>
+    <div className={styles["slider-wrapper"]}>
+      <div className={styles["slider"]} ref={sliderElement}>
         {children}
       </div>
       {pagination && (

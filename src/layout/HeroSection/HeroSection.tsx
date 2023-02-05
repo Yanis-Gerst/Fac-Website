@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import Button from "../../componenents/Button/Button";
-import heroIllustration from "./../../../assets/heroIllustration.svg";
+import heroIllustration from "../../../public/assets/heroIllustration.svg";
+import Image from "next/image";
 
 const HeroSection = () => {
   const heroSection = useRef<HTMLDivElement>(null);
@@ -8,7 +9,8 @@ const HeroSection = () => {
 
   const resizeHeroSectionBaseOnHeroHeader = () => {
     if (!heroSection.current || !heroHeader.current) return;
-    heroSection.current.style.width = `${heroHeader.current.offsetWidth}`;
+    console.log(heroHeader.current.style.width);
+    heroSection.current.style.width = `${heroHeader.current.offsetWidth}px`;
   };
 
   const scrollToSection = (element: HTMLElement) => {
@@ -71,7 +73,11 @@ const HeroSection = () => {
           </Button>
         </div>
       </div>
-      <img src={heroIllustration} className="hero-section__illustration" />
+      <Image
+        src={heroIllustration}
+        className="hero-section__illustration"
+        alt="Une leçon de cours fait sur papier convertir en leçon numérique"
+      />
       <div className="hero-wrapper__discover hidden-on-mobile">
         <p className="text--semi-header6">Découvrir Name</p>
         <Button

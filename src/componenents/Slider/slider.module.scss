@@ -1,0 +1,23 @@
+.slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.slider {
+  padding: 0 0.75em;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100vw;
+
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}

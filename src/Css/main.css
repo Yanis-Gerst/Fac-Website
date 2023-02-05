@@ -161,6 +161,7 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @media (max-width: 375px) {
@@ -376,25 +377,25 @@ body {
 /* Custom Font */
 @font-face {
   font-family: "Inter";
-  src: url(../../../font/Inter/static/Inter-Regular.ttf);
+  src: url(../../public/font/Inter/static/Inter-Regular.ttf);
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url(../../../font/Inter/static/Inter-Bold.ttf);
+  src: url(../../public/font/Inter/static/Inter-Bold.ttf);
   font-weight: 700;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url(../../../font/Inter/static/Inter-SemiBold.ttf);
+  src: url(../../public/font/Inter/static/Inter-SemiBold.ttf);
   font-weight: 600;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url(../../../font/Inter/static/Inter-Medium.ttf);
+  src: url(../../public/font/Inter/static/Inter-Medium.ttf);
   font-weight: 500;
 }
 
@@ -511,6 +512,11 @@ body {
   position: relative;
   margin: 0 auto;
   max-width: 400px;
+}
+
+.hero-section__illustration {
+  width: 100%;
+  height: auto;
 }
 
 .hero-section {
@@ -663,6 +669,7 @@ body {
 .feature-slider__img {
   margin-top: 1.25rem;
   max-height: 300px;
+  width: auto;
 }
 
 .feature-grid {
@@ -731,6 +738,26 @@ body {
 .questionnary-section__header {
   margin-top: 2.25rem;
   margin-bottom: 2rem;
+}
+
+.questionnary-section__next-button {
+  font-size: 1rem;
+  font-weight: 700;
+  -ms-flex-preferred-size: 70%;
+      flex-basis: 70%;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+.questionnary-section__back-button {
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
+  font-size: 1rem;
+  font-weight: 700;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
 }
 
 @media (min-width: 660px) and (max-width: 1200px) {

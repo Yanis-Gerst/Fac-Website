@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import Form from "../../componenents/Form";
-import questionnaryIllustration from "../../../assets/questionnaryIllustration.svg";
-import createInitFormOptions from "../../pages/AmuData/formOptions";
+import questionnaryIllustration from "../../../public/assets/questionnaryIllustration.svg";
+import createInitFormOptions from "../../AmuData/formOptions";
 import { IFormOptions } from "../../componenents/Form/Form";
 import Button from "../../componenents/Button";
-
+import Image from "next/image";
+import {
+  lowerCaseTheFirstLetter,
+  removeFirstCharacterOf,
+} from "../../utils/stringMethods";
 const QuestionnarySection = () => {
   const [formOptions, setFormOptions] = useState<IFormOptions>({});
-  const naviguate = useNavigate();
+  const router = useRouter();
+
+  const handleLinkToUrl = (url: string) => {
+    url = parseUrl(url);
+    router.push(url);
+  };
 
   useEffect(() => {
-    const initOptions = createInitFormOptions(naviguate, setFormOptions);
+    const initOptions = createInitFormOptions(handleLinkToUrl, setFormOptions);
     setFormOptions(initOptions);
-    console.log("Stae Change");
   }, []);
 
   return (
     <div className="questionnary-section">
-      <img
+      <Image
         src={questionnaryIllustration}
         alt="un homme qui se pose une question."
         className="questionnary-section__illustration"
@@ -30,18 +38,30 @@ const QuestionnarySection = () => {
         options={formOptions}
         setOptions={setFormOptions}
         nextButton={
-          <Button type="primary" specificStyle="form__next-button">
+          <Button
+            type="primary"
+            specificStyle="questionnary-section__next-button"
+          >
             Suivant
           </Button>
         }
         backButton={
-          <Button type="secondary" specificStyle="form__back-button">
+          <Button
+            type="secondary"
+            specificStyle="questionnary-section__back-button"
+          >
             Back
           </Button>
         }
       />
     </div>
   );
+};
+
+const parseUrl = (url: string) => {
+  let newUrl = removeFirstCharacterOf(url);
+  newUrl = lowerCaseTheFirstLetter(newUrl);
+  return newUrl;
 };
 
 export default QuestionnarySection;

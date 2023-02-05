@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./pagination.module.scss";
 
 interface Props {
   activeIndex: number;
@@ -13,13 +14,13 @@ const Pagination = ({ activeIndex, slideNumber, sliderElement }: Props) => {
       sliderElement.current.offsetWidth * index;
   };
   return (
-    <div className="pagination">
+    <div className={styles["pagination"]}>
       {[...Array(slideNumber)].map((elt, index) => {
         return (
           <div
             key={index}
-            className={`pagination__circle ${
-              activeIndex == index && "pagination__circle--active"
+            className={`${styles["pagination__circle"]} ${
+              activeIndex == index && styles["pagination__circle--active"]
             }`}
             onClick={() => scrollToIndexImg(index)}
           />

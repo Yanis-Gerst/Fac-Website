@@ -1,0 +1,71 @@
+.btn {
+  border-radius: 4px;
+  padding: 0.5em 0.25em;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  border: none;
+  background: none;
+}
+
+.btn--primary {
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.btn--primary:hover {
+  background-color: var(--primary-color-accent);
+}
+
+.btn--primary-invert {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.btn--primary-invert:hover {
+  background-color: var(--primary-color);
+  color: #fefefe;
+}
+
+.btn--secondary {
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.btn--secondary:hover {
+  background-color: var(--secondary-color-accent);
+}
+
+.btn--secondary-invert {
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.btn--secondary-invert:hover {
+  background-color: var(--secondary-color);
+  color: #fefefe;
+}
+
+.btn--tertiary {
+  background-color: var(--tertiary-color);
+  cursor: pointer;
+}
+
+.btn--tertiary:hover {
+  background-color: var(--tertiary-color-accent);
+}
+
+.btn--tertiary-invert {
+  border: 2px solid var(--tertiary-color);
+  color: var(--tertiary-color);
+  cursor: pointer;
+}
+
+.btn--tertiary-invert:hover {
+  background-color: var(--tertiary-color);
+  color: #fefefe;
+}
+/*# sourceMappingURL=button.module.css.map */

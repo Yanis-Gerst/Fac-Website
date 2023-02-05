@@ -22,6 +22,11 @@ $spacing: 1rem;
   max-width: 400px;
 }
 
+.hero-section__illustration {
+  width: 100%;
+  height: auto;
+}
+
 .hero-section {
   display: flex;
   flex-direction: column;
