@@ -7,7 +7,7 @@ import TabItem from "../componenents/Tabs/TabItem";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import {
   getAllCursusUrl,
-  retreiveDataPageFromUrl,
+  retreiveCursusDataFromUrl,
 } from "../lib/CursusPage/cursusData";
 
 interface Props {
@@ -30,7 +30,9 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 export const getStaticProps: GetStaticProps = ({ params }) => {
   const cursusParams = params?.cursus as string[];
-  const cursusData = retreiveDataPageFromUrl(cursusParams.join("/") as string);
+  const cursusData = retreiveCursusDataFromUrl(
+    cursusParams.join("/") as string
+  );
 
   return {
     props: {

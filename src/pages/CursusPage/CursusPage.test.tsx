@@ -4,7 +4,6 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import UrlHandler from "../UrlHandler";
 import { ITeachingDomain } from "../../@types/global";
-import { BrowserRouter } from "react-router-dom";
 import mockPageObject from "../../../__mocks__/mockPageObject";
 
 let mockPathName = "/PortailDescartes";

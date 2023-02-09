@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { lowerCaseTheFirstLetter } from "../../utils/stringMethods";
+import { parseTitleToUrl } from "../../lib/teachUnit/teachUnitData";
 
 interface Props {
   domains: ITeachingDomain[];
@@ -26,13 +27,13 @@ export const TeachingUnit = ({
       <ul className="teach-unit-card__list-item">
         {domains[activeTabIndex][`teachingUnitsS${semesterNumber}`].map(
           (teachUnit) => {
-            const urlTeachUnit = parseTileToUrl(teachUnit.title);
+            const teachUnitTileFormat = parseTitleToUrl(teachUnit.title);
+
+            const teachUnitUrl = `domain/${domains[activeTabIndex].title}/S${semesterNumber}/${teachUnitTileFormat}`;
 
             return (
               <li className="teach-unit-card__item" key={teachUnit.title}>
-                <Link
-                  href={`${router.asPath}/${urlTeachUnit.replace(" ", "")}`}
-                >
+                <Link href={`UePage${router.asPath}/${teachUnitUrl}`}>
                   {teachUnit.title}
                 </Link>
                 <Image
@@ -47,16 +48,6 @@ export const TeachingUnit = ({
       </ul>
     </div>
   );
-};
-
-const parseTileToUrl = (teachUnit: string) => {
-  let urlTeachUnit = lowerCaseTheFirstLetter(teachUnit);
-  urlTeachUnit = removeAccentFrom(urlTeachUnit);
-  return urlTeachUnit;
-};
-
-const removeAccentFrom = (string: string) => {
-  return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
 
 export default TeachingUnit;

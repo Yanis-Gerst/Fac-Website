@@ -17,9 +17,23 @@ const capitilize = (string: string) => {
     .join(" ");
 };
 
+export const camelCase = (string: string) => {
+  string.trim();
+  const word = string.split(" ");
+  for (let i = 1; i < word.length; i++) {
+    word[i] = upperCaseTheFirstLetter(word[i]);
+  }
+  return word.join("");
+};
+
+const removeAccentFrom = (string: string) => {
+  return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
 export {
   lowerCaseTheFirstLetter,
   removeFirstCharacterOf,
   upperCaseTheFirstLetter,
   capitilize,
+  removeAccentFrom,
 };

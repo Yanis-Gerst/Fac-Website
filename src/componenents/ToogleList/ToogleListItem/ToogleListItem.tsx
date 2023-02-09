@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
-import { ReactComponent as ToogleArrow } from "../../../../public/assets/toogleArrow.svg";
+import ToogleArrow from "../../../../public/assets/toogleArrow.svg";
+import Image from "next/image";
 import styles from "./toogleListItem.module.scss";
 
 interface Props {
@@ -27,13 +28,15 @@ const ToogleListItem = ({
       >
         <>
           <div className={styles["toogle-item__header"]}>
-            <ToogleArrow
+            <Image
+              src={ToogleArrow}
               onClick={() => setterActiveItemIndex(index)}
               className={
                 index == activeItemIndex
                   ? styles["toogle-item__svg--active"]
                   : ""
               }
+              alt="Une flèche qui pointe vers la droite"
             />
             {React.cloneElement(title, {
               onClick: () => setterActiveItemIndex(index),

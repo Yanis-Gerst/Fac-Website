@@ -217,7 +217,7 @@ const pageDbJson: IPageDbJson = {
             chapters: [],
           },
           {
-            title: "Introductin à l'informatique",
+            title: "Introduction à l'informatique",
             chapters: [],
           },
           {

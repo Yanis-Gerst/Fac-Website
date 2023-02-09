@@ -37,6 +37,10 @@ const Form = ({ options, setOptions, nextButton, backButton }: Props) => {
     if (optionsHistory.length <= 1) return;
     optionsHistory.pop(); //Remove Current Options
     setOptions(optionsHistory.pop() as IFormOptions);
+
+    const newPath = path.split("/");
+    newPath.pop(); //remove currentPath to get previous path
+    setPath(newPath.join("/"));
   };
 
   useEffect(() => {
