@@ -9,12 +9,7 @@ const user = userEvent.setup();
 
 describe("Form Display Right Options", () => {
   it("at First Render", async () => {
-    const optionsToTest: IFormOptions = createOptionsToTest(
-      placeholderFunction,
-      placeholderFunction
-    );
-
-    render(<Form options={optionsToTest} />);
+    render(<OptionsHandlerComponent />);
 
     expect(screen.getByText("Primary")).toBeInTheDocument();
     expect(screen.getByText("Tertiary")).toBeInTheDocument();
@@ -41,12 +36,7 @@ describe("Form give the Right Path Of Options as argurments", () => {
   });
 
   it("With First Options", async () => {
-    const optionsToTest: IFormOptions = createOptionsToTest(
-      placeholderFunction,
-      naviguationTest
-    );
-
-    render(<Form options={optionsToTest} />);
+    render(<OptionsHandlerComponent />);
 
     const tertiaryOptions = screen.getByText("Tertiary");
     const submitButton = screen.getByRole("button");
@@ -76,11 +66,7 @@ describe("Form give the Right Path Of Options as argurments", () => {
 });
 
 test("Back Button work", async () => {
-  const optionsToTest: IFormOptions = createOptionsToTest(
-    placeholderFunction,
-    placeholderFunction
-  );
-  render(<Form options={optionsToTest} />);
+  render(<OptionsHandlerComponent />);
 
   const primaryOptions = screen.getByText("Primary");
   const submitButton = screen.getByRole("button");
@@ -127,5 +113,5 @@ const OptionsHandlerComponent: React.FC<Props> = ({
     setOptions(createOptionsToTest(setOptions, naviguationTest));
   }, []);
 
-  return <Form options={options} />;
+  return <Form options={options} setOptions={setOptions} />;
 };
