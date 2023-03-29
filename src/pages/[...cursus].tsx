@@ -1,21 +1,19 @@
 import React, { useState } from "react";
-import { ICursus } from "../@types/global";
 import NavBar from "../layout/NavBar";
 import Tabs from "../componenents/Tabs/Tabs";
 import TeachingUnit from "../layout/TeachingUnit";
 import TabItem from "../componenents/Tabs/TabItem";
 import { GetStaticPaths, GetStaticProps } from "next/types";
-import {
-  getAllCursusUrl,
-  retreiveCursusDataFromUrl,
-} from "../lib/CursusPage/cursusData";
+import { getAllCursusUrl } from "../lib/CursusPage/cursusData";
+import { ICursusPage } from "../@types/global";
+import { retrieveAmuDataFromUrl } from "../lib/db/amuData";
 
 interface Props {
-  cursusData: ICursus;
+  cursusData: ICursusPage;
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
-  const allCursusUrl = getAllCursusUrl();
+export const getStaticPaths: GetStaticPaths = async () => {
+  const allCursusUrl = await getAllCursusUrl();
 
   const paths = allCursusUrl.map((cursusUrl) => {
     return {
@@ -28,9 +26,10 @@ export const getStaticPaths: GetStaticPaths = () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const cursusParams = params?.cursus as string[];
-  const cursusData = retreiveCursusDataFromUrl(
+
+  const cursusData = await retrieveAmuDataFromUrl(
     cursusParams.join("/") as string
   );
 
@@ -60,7 +59,7 @@ const CursusPage = ({ cursusData }: Props) => {
         })}
       </Tabs>
 
-      <div className="teach-units-wrapper">
+      <section className="teach-units-wrapper">
         <TeachingUnit
           activeTabIndex={activeTabIndex}
           domains={cursusData.domainSection}
@@ -72,7 +71,7 @@ const CursusPage = ({ cursusData }: Props) => {
           domains={cursusData.domainSection}
           semesterNumber={2}
         />
-      </div>
+      </section>
     </>
   );
 };

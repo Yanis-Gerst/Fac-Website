@@ -1,0 +1,23 @@
+.inputs-container {
+  border: 1px solid var(--stroke-light);
+  border-radius: 4px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  label {
+    color: var(--secondary-text-color);
+    font-size: 0.75rem;
+  }
+
+  input {
+    font-size: 1rem;
+    border: none;
+
+    &:hover {
+      outline: none;
+      border: none;
+    }
+  }
+}

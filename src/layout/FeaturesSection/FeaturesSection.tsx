@@ -25,7 +25,7 @@ const FeaturesSection = ({ featuresList }: Props) => {
 
   return (
     <>
-      <div className="feature-section-wrapper">
+      <section className="feature-section-wrapper">
         <h1 className="text--header4 feature-section__header">
           Name c&apos;est Quoi ?
         </h1>
@@ -42,7 +42,7 @@ const FeaturesSection = ({ featuresList }: Props) => {
             })}
           </Slider>
         )}
-      </div>
+      </section>
     </>
   );
 };

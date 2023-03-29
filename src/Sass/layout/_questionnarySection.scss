@@ -29,7 +29,7 @@
   font-weight: 700;
   order: 1;
 }
-@media (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint) {
+@media screen and (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint) {
   .questionnary-section {
     max-width: 550px;
     margin: 0 auto;
@@ -39,7 +39,7 @@
   }
 }
 
-@media (min-width: $desktop-breakpoint) {
+@media screen and (min-width: $desktop-breakpoint) {
   .questionnary-section {
     box-sizing: border-box;
     display: grid;

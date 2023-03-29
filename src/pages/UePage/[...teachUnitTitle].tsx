@@ -1,45 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { ITeachingUnit } from "../../@types/global";
 import NavBar from "../../layout/NavBar";
 import Sheets from "../../layout/Sheets";
 import { desktopBreakpoint } from "..";
 import SidebarMenu from "../../layout/SidebarMenu";
 import SidebarItems from "../../layout/SidebarMenu/SidebarItems";
-import { GetStaticPaths, GetStaticProps } from "next/types";
-import {
-  getAllTeachingUnitsUrls,
-  retrieveTeachingUnitDataFromUrl,
-} from "../../lib/teachUnit/teachUnitData";
+import { GetServerSideProps } from "next/types";
 import ToogleList from "../../componenents/ToogleList";
 import ToogleListItem from "../../componenents/ToogleList/ToogleListItem";
+import {
+  retrieveAllChapters,
+  retrieveAmuDataFromUrl,
+} from "../../lib/db/amuData";
+import { WithId } from "mongodb";
 
 interface Props {
   ueData: ITeachingUnit;
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const allTeachingUnitsUrls = getAllTeachingUnitsUrls();
+const parseIdData = (document: WithId<object>[]) => {
+  return document.map((doc) => ({
+    ...doc,
+    _id: doc._id.toString(),
+  }));
+};
 
-  const paths = allTeachingUnitsUrls.map((teachUnitUrl) => ({
-    params: {
-      teachUnitTitle: teachUnitUrl?.split("/"),
-    },
+export const getServerSideProps: GetServerSideProps = async ({
+  resolvedUrl,
+}) => {
+  const currentUrl = resolvedUrl.replace("/UePage/", "");
+  const teachUnitData = await retrieveAmuDataFromUrl(currentUrl);
+  const chapterDataCursor = await retrieveAllChapters(teachUnitData.chapters);
+  let chapterData = await chapterDataCursor.toArray();
+  chapterData = chapterData.map((chapData) => ({
+    ...chapData,
+    _id: chapData._id.toString(),
+    revisionSheets: parseIdData(chapData.revisionSheets),
   }));
 
-  return { paths, fallback: false };
+  const data = { title: teachUnitData.title, chapters: chapterData };
+
+  return { props: { ueData: data } };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const ueParams = params?.teachUnitTitle as string[];
-  const teachUnitData = retrieveTeachingUnitDataFromUrl(ueParams.join("/"));
-  return { props: { ueData: teachUnitData } };
-};
+export const ChapterIdContext = createContext<string>("");
 
 const UePage = ({ ueData }: Props) => {
   const [activeChapterIndex, setActiveChapterIndex] = useState<number>(0);
   const [windowWidth, setWindowWidth] = useState<number>(0);
 
   const chapterToRender = ueData.chapters[activeChapterIndex];
+
   useEffect(() => {
     const setWindowWidthOnRezize = () => {
       setWindowWidth(window.innerWidth);
@@ -53,7 +64,7 @@ const UePage = ({ ueData }: Props) => {
   return (
     <>
       <NavBar />
-      <div className="ue-page-wrapper">
+      <section className="ue-page-wrapper">
         {windowWidth < desktopBreakpoint ? (
           <>
             <h1 className="ue-title text--header4">{ueData.title}</h1>
@@ -62,16 +73,20 @@ const UePage = ({ ueData }: Props) => {
                 <ToogleListItem
                   key={chapter.title}
                   title={
-                    <h2 className="text--semi-header4">
-                      Chaptire {index}: {chapter.title}
-                    </h2>
+                    <details className="text--semi-header4">
+                      <summary>
+                        Chaptire {index}: {chapter.title}
+                      </summary>
+                    </details>
                   }
                   index={index}
                 >
-                  <Sheets
-                    revisionSheetsData={chapter.revionSheets}
-                    exercicesSheetsData={chapter.exercicesSheets}
-                  />
+                  <ChapterIdContext.Provider value={chapterToRender._id}>
+                    <Sheets
+                      revisionSheetsData={chapter.revisionSheets}
+                      exercicesSheetsData={chapter.exercicesSheets}
+                    />
+                  </ChapterIdContext.Provider>
                 </ToogleListItem>
               ))}
             </ToogleList>
@@ -87,14 +102,16 @@ const UePage = ({ ueData }: Props) => {
             </SidebarMenu>
             <div className="ue-page-current-chapter">
               <h1 className="ue-page-header text--header3">{ueData.title}</h1>
-              <Sheets
-                revisionSheetsData={chapterToRender.revionSheets}
-                exercicesSheetsData={chapterToRender.exercicesSheets}
-              />
+              <ChapterIdContext.Provider value={chapterToRender._id}>
+                <Sheets
+                  revisionSheetsData={chapterToRender.revisionSheets}
+                  exercicesSheetsData={chapterToRender.exercicesSheets}
+                />
+              </ChapterIdContext.Provider>
             </div>
           </>
         )}
-      </div>
+      </section>
     </>
   );
 };

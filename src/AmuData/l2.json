@@ -1,0 +1,22 @@
+
+{
+    "title": "l2",
+    "options": [
+        {
+            "title": "L2 Informatique",
+            "domainSection": []
+        },
+        {
+            "title": "L2 Mathématique",
+            "domainSection": []
+        },
+        {
+            "title": "L2 Physique",
+            "domainSection": []
+        },
+        {
+            "title": "L2 Mécanique",
+            "domainSection": []
+        }
+    ]
+  }

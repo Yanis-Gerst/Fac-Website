@@ -30,10 +30,19 @@ const removeAccentFrom = (string: string) => {
   return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
 
+const parseTitleToUrl = (teachUnit: string) => {
+  let urlTeachUnit = lowerCaseTheFirstLetter(teachUnit);
+  urlTeachUnit = camelCase(urlTeachUnit);
+  urlTeachUnit = removeAccentFrom(urlTeachUnit);
+  urlTeachUnit = urlTeachUnit.replaceAll(" ", "");
+  return urlTeachUnit;
+};
+
 export {
   lowerCaseTheFirstLetter,
   removeFirstCharacterOf,
   upperCaseTheFirstLetter,
   capitilize,
   removeAccentFrom,
+  parseTitleToUrl,
 };

@@ -9,8 +9,25 @@ import NavBar from "../layout/NavBar/NavBar";
 
 import { IFeature } from "../@types/global";
 import FeaturesSection from "../layout/FeaturesSection";
+import { GetStaticProps } from "next";
+import { createInitFormOptions, getAllCursus } from "../lib/db/amuData";
+import { IFormOptions } from "../componenents/Form/Form";
 
-const LandingPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const formOptions = createInitFormOptions(await getAllCursus());
+
+  return {
+    props: {
+      formOptions,
+    },
+  };
+};
+
+interface Props {
+  formOptions: IFormOptions[];
+}
+
+const LandingPage = ({ formOptions }: Props) => {
   const placeholderText =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.";
   const featureList: IFeature[] = [
@@ -46,7 +63,7 @@ const LandingPage = () => {
       <div className="landing-page">
         <HeroSection />
         <FeaturesSection featuresList={featureList} />
-        <QuestionnarySection />
+        <QuestionnarySection formOptions={formOptions} />
       </div>
     </>
   );

@@ -56,7 +56,7 @@ $max-width-cursusPage-desktop: 700px;
 .teach-unit-card__arrow {
   width: 20px;
 }
-@media (min-width: 500px) {
+@media screen and (min-width: 500px) {
   .teach-unit-card {
     max-width: 700px;
     width: 80vw;
@@ -64,7 +64,7 @@ $max-width-cursusPage-desktop: 700px;
   }
 }
 
-@media (min-width: $desktop-breakpoint) {
+@media screen and (min-width: $desktop-breakpoint) {
   .teach-unit-card {
     padding-top: 1.5rem;
     padding-left: 1.5rem;

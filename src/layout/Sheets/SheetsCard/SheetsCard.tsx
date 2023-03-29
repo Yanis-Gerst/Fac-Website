@@ -1,10 +1,10 @@
 import React from "react";
-import { publicationUnit } from "../../../@types/global";
+import { IPublicationUnit } from "../../../@types/global";
 import Button from "../../../componenents/Button";
 import SheetsCardIcons from "./SheetsCardIcons";
 
 interface Props {
-  sheetData: publicationUnit;
+  sheetData: IPublicationUnit;
   type: "revision" | "exercices";
 }
 
@@ -17,7 +17,7 @@ const SheetsCard = ({ sheetData, type }: Props) => {
       <p className="sheets-card-desc">{sheetData.descriptions}</p>
       <SheetsCardIcons
         userName={sheetData.userName}
-        like={sheetData.like}
+        like={0}
         yearOfPublication={sheetData.yearOfPublication}
       />
       <div
@@ -26,13 +26,22 @@ const SheetsCard = ({ sheetData, type }: Props) => {
         }`}
       >
         {type === "exercices" && (
-          <Button type="secondary" specificStyle="sheets-card__button">
+          <Button
+            type="secondary"
+            specificStyle="sheets-card__button btn-secondary"
+          >
             Correction
           </Button>
         )}
-        <Button type="primary" specificStyle="sheets-card__button">
-          {type === "exercices" ? "Exercices" : "Télécharger"}
-        </Button>
+
+        <a
+          className="sheets-card__button"
+          href={`http://localhost:3000/api/posts/${sheetData._id}`}
+        >
+          <Button type="primary" specificStyle="sheets-card__button">
+            {type === "exercices" ? "Exercices" : "Télécharger"}
+          </Button>
+        </a>
       </div>
     </div>
   );

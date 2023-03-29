@@ -2,7 +2,7 @@ import React from "react";
 import { createPortal } from "react-dom";
 import { cloneElement } from "react";
 import { useEffect } from "react";
-import "./_modale.scss";
+import styles from "./_modale.module.scss";
 
 export interface Props {
   children: React.ReactElement;
@@ -10,7 +10,7 @@ export interface Props {
   appearOnScrean?: boolean;
 }
 
-export const Modal = ({ children, toClose, appearOnScrean }: Props) => {
+export const Modal = ({ children, toClose, appearOnScrean = true }: Props) => {
   const newChildren = cloneElement(children, { toClose });
 
   const handleShortcut = (e: KeyboardEvent) => {
@@ -29,8 +29,10 @@ export const Modal = ({ children, toClose, appearOnScrean }: Props) => {
 
   return createPortal(
     <div
-      className={`modale-container ${
-        appearOnScrean ? "modale-opacity-visible" : "modale-opacity-0"
+      className={`${styles["modale-container"]} ${
+        appearOnScrean
+          ? styles["modale-opacity-visible"]
+          : styles["modale-opacity-0"]
       }`}
     >
       {newChildren}

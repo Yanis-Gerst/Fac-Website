@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import Form from "../../componenents/Form";
 import questionnaryIllustration from "../../../public/assets/questionnaryIllustration.svg";
-import createInitFormOptions from "../../AmuData/formOptions";
 import { IFormOptions } from "../../componenents/Form/Form";
 import Button from "../../componenents/Button";
 import Image from "next/image";
-import {
-  lowerCaseTheFirstLetter,
-  removeFirstCharacterOf,
-} from "../../utils/stringMethods";
-const QuestionnarySection = () => {
-  const [formOptions, setFormOptions] = useState<IFormOptions>({});
+
+interface Props {
+  formOptions: IFormOptions[];
+}
+const QuestionnarySection = ({ formOptions }: Props) => {
   const router = useRouter();
 
-  const handleLinkToUrl = (url: string) => {
-    url = parseUrl(url);
+  const naviguation = (url: string) => {
     router.push(url);
   };
 
-  useEffect(() => {
-    const initOptions = createInitFormOptions(handleLinkToUrl, setFormOptions);
-    setFormOptions(initOptions);
-  }, []);
-
   return (
-    <div className="questionnary-section">
+    <section className="questionnary-section">
       <Image
         src={questionnaryIllustration}
         alt="un homme qui se pose une question."
@@ -35,8 +27,8 @@ const QuestionnarySection = () => {
         Quelle est ton cursus ?
       </h1>
       <Form
-        options={formOptions}
-        setOptions={setFormOptions}
+        initOptions={formOptions}
+        naviguation={naviguation}
         nextButton={
           <Button
             type="primary"
@@ -54,14 +46,8 @@ const QuestionnarySection = () => {
           </Button>
         }
       />
-    </div>
+    </section>
   );
-};
-
-const parseUrl = (url: string) => {
-  let newUrl = removeFirstCharacterOf(url);
-  newUrl = lowerCaseTheFirstLetter(newUrl);
-  return newUrl;
 };
 
 export default QuestionnarySection;

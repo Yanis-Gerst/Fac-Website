@@ -4,8 +4,7 @@ import rightArrow from "../../../public/assets/rightArrow.svg";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { lowerCaseTheFirstLetter } from "../../utils/stringMethods";
-import { parseTitleToUrl } from "../../lib/teachUnit/teachUnitData";
+import { parseTitleToUrl } from "../../utils/stringMethods";
 
 interface Props {
   domains: ITeachingDomain[];
@@ -27,9 +26,11 @@ export const TeachingUnit = ({
       <ul className="teach-unit-card__list-item">
         {domains[activeTabIndex][`teachingUnitsS${semesterNumber}`].map(
           (teachUnit) => {
-            const teachUnitTileFormat = parseTitleToUrl(teachUnit.title);
-
-            const teachUnitUrl = `domain/${domains[activeTabIndex].title}/S${semesterNumber}/${teachUnitTileFormat}`;
+            const teachUnitTitleUrl = parseTitleToUrl(teachUnit.title);
+            const domainTitleUrl = parseTitleToUrl(
+              domains[activeTabIndex].title
+            );
+            const teachUnitUrl = `${domainTitleUrl}/S${semesterNumber}/${teachUnitTitleUrl}`;
 
             return (
               <li className="teach-unit-card__item" key={teachUnit.title}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "../../componenents/Button/Button";
 import heroIllustration from "../../../public/assets/heroIllustration.svg";
 import Image from "next/image";
@@ -25,11 +25,8 @@ const HeroSection = () => {
       document.querySelector(".feature-section-wrapper") as HTMLDivElement
     );
 
-  useLayoutEffect(() => {
-    resizeHeroSectionBaseOnHeroHeader();
-  }, []);
-
   useEffect(() => {
+    resizeHeroSectionBaseOnHeroHeader();
     window.addEventListener("resize", resizeHeroSectionBaseOnHeroHeader);
     return () => {
       window.removeEventListener("resize", resizeHeroSectionBaseOnHeroHeader);
@@ -37,7 +34,7 @@ const HeroSection = () => {
   });
 
   return (
-    <div className="hero-wrapper">
+    <section className="hero-wrapper">
       <div className="hero-text">
         <h1 className="hero-header" ref={heroHeader}>
           Lorem ipsum dolor sit amet,{" "}
@@ -88,7 +85,7 @@ const HeroSection = () => {
           👇
         </Button>
       </div>
-    </div>
+    </section>
   );
 };
 

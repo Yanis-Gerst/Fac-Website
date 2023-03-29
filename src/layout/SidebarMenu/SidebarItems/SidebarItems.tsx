@@ -15,17 +15,19 @@ const SidebarItems = ({
   return (
     <>
       {chapters.map((chapter, index) => (
-        <li
+        <div
           className={`sidebar-list__chapter-item ${
             index == activeItemIndex && "sidebar-list__chapter-item--active"
           }`}
           key={chapter.title}
           onClick={() => setActiveItemIndex(index)}
         >
-          <h4>
-            Chaptire {index}: {chapter.title}
-          </h4>
-        </li>
+          <details>
+            <summary>
+              Chaptire {index}: {chapter.title}
+            </summary>
+          </details>
+        </div>
       ))}
     </>
   );

@@ -1,42 +1,47 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import { parseTitleToUrl } from "../../utils/stringMethods";
+
 import styles from "./form.module.scss";
 
 export interface IFormOptions {
-  [key: string]: (page: string) => void;
+  label: string;
+  next: IFormOptions[];
 }
 
 interface Props {
-  options: IFormOptions;
-  setOptions: React.Dispatch<IFormOptions>;
+  initOptions: IFormOptions[];
+  naviguation: (url: string) => void;
   nextButton?: ReactElement;
   backButton?: ReactElement;
 }
-const Form = ({ options, setOptions, nextButton, backButton }: Props) => {
-  const [formValue, setFormValue] = useState("");
+const Form = ({ initOptions, naviguation, nextButton, backButton }: Props) => {
+  const [options, setOptions] = useState<IFormOptions[]>(initOptions);
+  const [activeOptionIndex, setActiveOptionIndex] = useState(0);
   const [path, setPath] = useState("");
-  const [optionsHistory, setOptionsHistory] = useState<IFormOptions[]>([]);
+  const [optionsHistory, setOptionsHistory] = useState<IFormOptions[][]>([]);
 
   const handleClickOnInput = (e: React.MouseEvent<HTMLElement>) => {
     const inputChild: HTMLInputElement =
       e.currentTarget?.getElementsByTagName("input")[0];
     inputChild.checked = true;
-    setFormValue(inputChild.value);
+    setActiveOptionIndex(parseInt(inputChild.value));
   };
 
   const handleNextSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const newPath = `${path}/${formValue.replace(/\s/g, "")}`;
+    const activeOption = options[activeOptionIndex];
+    const newPath = `${path}/${parseTitleToUrl(activeOption.label)}`;
     setPath(newPath);
 
-    const onSubmitFunction = options[formValue];
-    onSubmitFunction(newPath);
+    if (activeOption.next.length === 0) naviguation(newPath);
+    else setOptions(activeOption.next);
   };
 
   const handleBackClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (optionsHistory.length <= 1) return;
     optionsHistory.pop(); //Remove Current Options
-    setOptions(optionsHistory.pop() as IFormOptions);
+    setOptions(optionsHistory.pop() as IFormOptions[]);
 
     const newPath = path.split("/");
     newPath.pop(); //remove currentPath to get previous path
@@ -44,26 +49,24 @@ const Form = ({ options, setOptions, nextButton, backButton }: Props) => {
   };
 
   useEffect(() => {
-    if (Object.keys(options).length === 0) return;
+    if (options.length === 0) return;
     setOptionsHistory((currentHistory) => [...currentHistory, options]);
-  }, [Object.keys(options)[0]]);
+  }, [options]);
 
   return (
     <form className={styles.form}>
       <ul className={styles["form__inputs"]}>
-        {Object.keys(options).map((key) => {
+        {options.map((option, index) => {
           return (
-            <li onClick={handleClickOnInput} key={key}>
+            <li onClick={handleClickOnInput} key={option.label}>
               <input
                 type="radio"
                 name="option"
-                key={key}
-                id={key}
-                value={key}
+                value={index}
                 className={styles["form__inputs__input"]}
               />
-              <label htmlFor={key} className="text--base-text">
-                {capitilize(key)}
+              <label htmlFor={option.label} className="text--base-text">
+                {capitilize(option.label)}
               </label>
             </li>
           );

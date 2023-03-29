@@ -46,7 +46,7 @@
   }
 }
 
-@media (min-width: $tablet-breakpoint) {
+@media screen and (min-width: $tablet-breakpoint) {
   .feature-slider__card h2 {
     width: 550px;
   }

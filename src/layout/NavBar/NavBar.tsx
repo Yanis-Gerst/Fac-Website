@@ -8,7 +8,7 @@ const NavBar = ({ children }: Props) => {
   const childrenArray = Children.toArray(children);
 
   return (
-    <div className="navbar-wrapper">
+    <section className="navbar-wrapper">
       <header className="nav-bar">
         <Link href="/" className="text--header5">
           Name
@@ -31,7 +31,7 @@ const NavBar = ({ children }: Props) => {
       <div className="divider-wrapper">
         <div className="divider-wrapper__line" />
       </div>
-    </div>
+    </section>
   );
 };
 

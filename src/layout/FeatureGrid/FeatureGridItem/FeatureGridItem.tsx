@@ -6,11 +6,11 @@ interface Props {
 }
 const FeatureGridItem = ({ feature }: Props) => {
   return (
-    <div className="feature-grid__item" key={feature.title}>
+    <article className="feature-grid__item" key={feature.title}>
       <Image src={feature.illustration} alt={feature.alt} />
       <h2 className="text--semi-header5">{feature.title}</h2>
       <p className="text--base-text">{feature.text}</p>
-    </div>
+    </article>
   );
 };
 

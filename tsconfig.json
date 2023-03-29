@@ -100,7 +100,7 @@
   },
   "include": [
     "src"
-  ],
+, "api", "posts"  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

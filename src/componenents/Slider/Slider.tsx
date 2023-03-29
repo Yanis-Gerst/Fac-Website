@@ -1,10 +1,5 @@
-import React, {
-  Children,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Children, useEffect, useRef, useState } from "react";
+import useIsomorphicLayoutEffect from "../../hook/useIsomorphicLayoutEffect";
 import Pagination from "./Pagination/Pagination";
 import styles from "./slider.module.scss";
 
@@ -23,7 +18,7 @@ const FeaturesSection = ({ children, pagination = true }: Props) => {
     sliderElement.current.style.marginLeft = `-${leftDistance}px`;
   };
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     positionSliderFullPage();
   }, []);
 
@@ -40,6 +35,7 @@ const FeaturesSection = ({ children, pagination = true }: Props) => {
 
   const arrayChildren = Children.toArray(children);
   const slideNumber = arrayChildren.length;
+
   const handleScroll = (event: Event) => {
     const currentElement = event.target as HTMLDivElement;
     const currentScroll = currentElement.scrollLeft;
@@ -57,7 +53,7 @@ const FeaturesSection = ({ children, pagination = true }: Props) => {
 
   return (
     <div className={styles["slider-wrapper"]}>
-      <div className={styles["slider"]} ref={sliderElement}>
+      <div className={styles["slider"]} ref={sliderElement} role="Slider">
         {children}
       </div>
       {pagination && (

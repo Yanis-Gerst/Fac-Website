@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 export interface IFeature {
   title: string;
   illustration: string;
@@ -5,19 +7,21 @@ export interface IFeature {
   alt: string;
 }
 
-type publicationUnit = {
+type IPublicationUnit = {
   title: string;
   descriptions: string;
   userName: string;
-  like: number;
   yearOfPublication: number;
-  pdfUrl: string;
-  id: string;
+  data: Buffer;
+  _id: ObjectId;
+  chapterRef: ObjectId;
 };
+
 type IChapterUnit = {
   title: string;
-  revionSheets: publicationUnit[];
-  exercicesSheets: publicationUnit[];
+  revisionSheets: ObjectId[];
+  exercicesSheets: ObjectId[];
+  _id: ObjectId;
 };
 type ITeachingUnit = {
   title: string;
@@ -29,11 +33,12 @@ type ITeachingDomain = {
   teachingUnitsS2: ITeachingUnit[];
 };
 
-type ICursus = {
+type ICursusPage = {
   title: string;
   domainSection: ITeachingDomain[];
 };
 
-type IPageDbJson = {
-  [key: string]: ICursus | IPageDbJson;
+type ICursusDocumenent = {
+  title: string;
+  options: (ICursusDocumenent | ICursusPage)[];
 };

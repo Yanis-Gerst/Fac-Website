@@ -1,42 +1,54 @@
-import { ICursus } from "../../@types/global";
-import { IPageDbJson } from "../../@types/global";
-import { lowerCaseTheFirstLetter } from "../../utils/stringMethods";
-import pageDbJson from "../../AmuData/pageObject";
+import { ICursusDocumenent, ICursusPage } from "../../@types/global";
+import { parseTitleToUrl } from "../../utils/stringMethods";
+import { getAllCursus, getCursusDocumentByTitle } from "../db/amuData";
 
-export const retreiveCursusDataFromUrl = (url: string) => {
-  const camelCaseUrl = lowerCaseTheFirstLetter(url);
-  const keys = camelCaseUrl.split("/");
-  let data: ICursus | null;
-  try {
-    data = retrieveCursusDataWithKeys(keys);
-  } catch {
-    data = null;
+export const retreiveCursusDataFromUrl = async (url: string) => {
+  const documentKeys = url.split("/");
+  const documentTitle = documentKeys[0];
+  const cursusDocument = await getCursusDocumentByTitle(documentTitle);
+  if (!cursusDocument)
+    throw new Error(`${documentTitle} doest not match any document in DB`);
+
+  const cursusPage = retriveCursusPage(cursusDocument, documentKeys.slice(1));
+
+  return cursusPage;
+};
+
+const retriveCursusPage = (
+  cursusDoc: ICursusDocumenent | ICursusPage,
+  cursusKey: string[]
+): ICursusPage => {
+  if (cursusKey.length == 0) return cursusDoc as ICursusPage;
+
+  for (const cursusOptions of (cursusDoc as ICursusDocumenent).options) {
+    if (parseTitleToUrl(cursusOptions.title) == cursusKey[0]) {
+      return retriveCursusPage(cursusOptions, cursusKey.slice(1));
+    }
   }
-  return data;
+
+  throw new Error(`Url with ${cursusKey} is not defined`);
+};
+export const getAllCursusUrl = async (): Promise<string[]> => {
+  const allCursus = await getAllCursus();
+
+  return allCursus.flatMap((cursusDoc) => getCursusUrlsOf(cursusDoc));
 };
 
-const retrieveCursusDataWithKeys = (keys: string[]) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let data: any = pageDbJson;
-  keys.forEach((key) => {
-    if (data[key] == undefined) {
-      throw new Error(`This Url have no defined page ${keys.join("/")}`);
-    }
-    data = data[key];
-  });
+export const getCursusUrlsOf = (
+  cursusDocument: ICursusDocumenent,
+  optionnalContext = ""
+): string[] => {
+  const context = optionnalContext
+    ? `${optionnalContext}/${cursusDocument.title}`
+    : cursusDocument.title;
 
-  return data as ICursus;
-};
+  return cursusDocument.options.flatMap(
+    (option: ICursusDocumenent | ICursusPage) => {
+      if ("domainSection" in option) {
+        return `${context}/${parseTitleToUrl(option.title)}`;
+      }
 
-export const getAllCursusUrl = (amuData = pageDbJson): string[] => {
-  const allCursusUrls = Object.keys(amuData).flatMap((key) => {
-    const currentPath = key;
-    if (amuData[key].domainSection != undefined) {
-      return [currentPath];
+      return getCursusUrlsOf(option as ICursusDocumenent, context);
     }
-    return getAllCursusUrl(amuData[key] as IPageDbJson).map(
-      (moreDepthPath) => `${currentPath}/${moreDepthPath}`
-    );
-  });
-  return allCursusUrls;
+  );
 };

@@ -4,20 +4,20 @@
   gap: 3.875rem;
 }
 
-@media (min-width: 450px) {
+@media screen and (min-width: 450px) {
   .landing-page {
     max-width: 90%;
     margin: 0 auto;
   }
 }
 
-@media (min-width: 500px) {
+@media screen and (min-width: 500px) {
   .landing-page {
     max-width: 80%;
   }
 }
 
-@media (min-width: $desktop-breakpoint) {
+@media screen and (min-width: $desktop-breakpoint) {
   .landing-page {
     margin: none;
     max-width: none;
