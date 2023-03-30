@@ -1,4 +1,10 @@
 .inputs-container {
+  display: flex;
+  flex-flow: column;
+  gap: 0.5rem;
+}
+
+.inputs {
   border: 1px solid var(--stroke-light);
   border-radius: 4px;
   padding: 0.5rem;
@@ -20,4 +26,8 @@
       border: none;
     }
   }
+}
+
+.inputs__errors {
+  color: #333;
 }

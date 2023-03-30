@@ -5,10 +5,6 @@ import fileX from "../../../../public/assets/file-x.svg";
 import PopupPost from "../../PopupPost";
 import { Modal } from "../../../componenents/Modale/Modale";
 
-interface Props {
-  chapterId: string;
-}
-
 const EmptySheets = () => {
   const [showPopup, setShowPopup] = useState(false);
   return (

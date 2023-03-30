@@ -1,12 +1,17 @@
-import React, { DragEvent, useContext, useState } from "react";
-import Inputs from "../../componenents/Inputs";
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import TextInput from "../../componenents/TextInput";
 import crossIcon from "../../../public/assets/cross.svg";
-import uploadIcon from "../../../public/assets/upload.svg";
 import Image from "next/image";
 import Button from "../../componenents/Button";
 import FilePost from "./FilePost";
 import { ChapterIdContext } from "../../pages/UePage/[...teachUnitTitle]";
+import { sheetsTypeContext } from "../Sheets/Sheets";
+import FileInput from "../../componenents/FileInput";
+
 export const apiRequestUrl = "/api/posts";
+
+const requiredMessage = "lorem ipsum dolor sit amet";
 
 type pdfMetaData = {
   title: string;
@@ -18,49 +23,22 @@ interface Props {
   toClose?: () => void;
 }
 const PopupPost = ({ toClose }: Props) => {
-  const [isDrag, setIsDrag] = useState(false);
-
-  const [title, setTitle] = useState("");
-  const [userName, setUserName] = useState("");
-  const [descriptions, setDescriptions] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ defaultValues: { userName: "", descriptions: "", title: "" } });
   const chapterId = useContext(ChapterIdContext);
+  const sheetsType = useContext(sheetsTypeContext);
   const [currentFile, setCurrentFile] = useState<File | null>(null);
-
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDrag(false);
-    const files = e.dataTransfer.files;
-    if (files.length > 1 && files[0].type !== "application/pdf") return; //TODO: Gérer l'erreur plus de 1 fichier
-    setCurrentFile(files[0]);
-  };
-
-  const addStyleAndCancelEvent = (e: React.DragEvent) => {
-    e.preventDefault();
-    if (!isDrag) setIsDrag(true);
-  };
-
-  const handleChange = (
-    setState: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    return (e: React.ChangeEvent<HTMLInputElement>) => setState(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    if (!currentFile) return;
-    const data: pdfMetaData = {
-      title,
-      userName,
-      descriptions,
-    };
-
-    postData(data);
-  };
+  const [errorFileInput, setErrorFileInput] = useState(false);
 
   const postData = async (data: pdfMetaData) => {
     if (!currentFile) return;
+
     const formData = new FormData();
     formData.append("file", currentFile);
+    formData.append("sheetsType", sheetsType);
     Object.keys(data).forEach((key) =>
       formData.append(key, data[key as keyof pdfMetaData])
     );
@@ -69,6 +47,16 @@ const PopupPost = ({ toClose }: Props) => {
       method: "POST",
       body: formData,
     });
+  };
+
+  const handleFileChange = (files: FileList) => {
+    if (!isPdfAndSoloFile(files)) return false;
+    setCurrentFile(files[0]);
+    return true;
+  };
+
+  const isPdfAndSoloFile = (files: FileList) => {
+    return files.length == 1 && files[0].type == "application/pdf";
   };
 
   return (
@@ -80,37 +68,49 @@ const PopupPost = ({ toClose }: Props) => {
           onClick={toClose}
           className="popup__btn"
         />
-        <form className="popup__pdf-form">
+        <form
+          className="popup__pdf-form"
+          onSubmit={handleSubmit((d) => {
+            if (!currentFile) return setErrorFileInput(true);
+            postData(d);
+          })}
+        >
           <div className="pdf-form__first-section">
-            <Inputs label="Nom Prenom" onChange={handleChange(setUserName)} />
-            <Inputs label="Titre" onChange={handleChange(setTitle)} />
+            <TextInput
+              label="Nom Prenom"
+              register={register("userName", {
+                required: requiredMessage,
+              })}
+              errors={errors.userName}
+            />
+
+            <TextInput
+              label="Titre"
+              register={register("title", { required: requiredMessage })}
+              errors={errors.title}
+            />
           </div>
-          <Inputs
+          <TextInput
             label="Descriptions"
-            onChange={handleChange(setDescriptions)}
+            register={register("descriptions", { required: requiredMessage })}
+            errors={errors.descriptions}
           />
-          <div
-            className={`file-input ${isDrag ? "file-input--dragged" : ""}`}
-            tabIndex={0}
-            onDrop={handleDrop}
-            onDragOver={addStyleAndCancelEvent}
-          >
-            <label htmlFor="file" id="file">
-              <Image src={uploadIcon} alt="Upload Icon" />
-              <p className="text--small-text">
-                Faire glisser ou{" "}
-                <span className="text--color-primary">Choisir un fichier</span>{" "}
-                au format pdf
-              </p>
-            </label>
-            <input type="file" name="file" id="file" />
-          </div>
-          {currentFile && <FilePost fileData={currentFile} />}
+          {currentFile ? (
+            <FilePost fileData={currentFile} handleDelete={setCurrentFile} />
+          ) : (
+            <FileInput
+              onChange={handleFileChange}
+              errorFileInput={errorFileInput}
+              setErrorFileInput={setErrorFileInput}
+            />
+          )}
 
           <Button
             type="primary"
             specificStyle="popup__btn-post"
-            onClick={handleSubmit}
+            onClick={() => {
+              if (!currentFile) setErrorFileInput(true);
+            }}
           >
             Publier
           </Button>

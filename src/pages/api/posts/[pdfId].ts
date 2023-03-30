@@ -1,10 +1,8 @@
 import { ObjectId } from "mongodb";
 import { getCollection, postPdf } from "../../../lib/db/amuData";
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-import clientPromise from "../../../lib/db/mangoDb";
 import formidable from "formidable";
 import { IPublicationUnit } from "../../../@types/global";
-import { title } from "process";
 
 export const config = {
   api: {
@@ -55,10 +53,10 @@ const handlePost: NextApiHandler = async (req, res) => {
 };
 
 const metaDataIsDefined = (parseRequest: IParseRequest) => {
-  const { title, descpriptions, userName } = parseRequest.fields as {
+  const { title, descriptions, userName } = parseRequest.fields as {
     [key: string]: string;
   };
-  return title && descpriptions && userName;
+  return title && descriptions && userName;
 };
 
 const handleGet: NextApiHandler = async (req, res) => {

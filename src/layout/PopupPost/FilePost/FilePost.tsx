@@ -5,11 +5,12 @@ import crossIcon from "../../../../public/assets/cross.svg";
 
 interface Props {
   fileData: File;
+  handleDelete: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 const bytesToMegaBytes = (bytes: number) => bytes / (1024 * 1024);
 
-const FilePost = ({ fileData }: Props) => {
+const FilePost = ({ fileData, handleDelete }: Props) => {
   return (
     <div className="file-post text--small-text text--color-sub">
       <div className="file-post__data">
@@ -19,18 +20,14 @@ const FilePost = ({ fileData }: Props) => {
           <p>{bytesToMegaBytes(fileData.size).toFixed(2)}Mo</p>
         </div>
         <div className="file-post__info-progress">
-          <Image
-            src={crossIcon}
-            alt="Cross icon"
-            className="file-post__cross-icon"
-          />
-          <p>56%</p>
+          <button onClick={() => handleDelete(null)}>
+            <Image
+              src={crossIcon}
+              alt="Cross icon"
+              className="file-post__cross-icon"
+            />
+          </button>
         </div>
-      </div>
-
-      <div className="file-post__progress-bar">
-        <div className="blue-bar"></div>
-        <div className="white-bar"></div>
       </div>
     </div>
   );

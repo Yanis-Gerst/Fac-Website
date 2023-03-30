@@ -60,6 +60,14 @@ $headerNumber: 6;
   color: var(--secondary-text-color);
 }
 
+.text--clickable {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary-color-accent);
+  }
+}
+
 /* Custom Font */
 
 @font-face {

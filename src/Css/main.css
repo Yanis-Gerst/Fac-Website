@@ -394,6 +394,14 @@ details > summary::-webkit-details-marker {
   color: var(--secondary-text-color);
 }
 
+.text--clickable {
+  cursor: pointer;
+}
+
+.text--clickable:hover {
+  color: var(--primary-color-accent);
+}
+
 /* Custom Font */
 @font-face {
   font-family: "Inter";
@@ -870,6 +878,7 @@ details > summary::-webkit-details-marker {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding-left: 0.5rem;
+  cursor: pointer;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -997,8 +1006,24 @@ details > summary::-webkit-details-marker {
       flex-shrink: 0;
 }
 
+.sheets-slider-header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
 .sheets-slider-header {
   font-size: 1.25rem;
+}
+
+.sheets-slider-header__upload-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 @-webkit-keyframes fadeIn {
@@ -1229,6 +1254,7 @@ details > summary::-webkit-details-marker {
 
 .popup__btn {
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 .popup__pdf-form {
@@ -1283,6 +1309,12 @@ details > summary::-webkit-details-marker {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.file-input input {
+  opacity: 0;
+  position: absolute;
+  top: -100%;
 }
 
 .file-input--dragged {
@@ -1346,9 +1378,16 @@ details > summary::-webkit-details-marker {
           justify-content: space-between;
 }
 
+.file-post__info-progress button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 .file-post__cross-icon {
-  width: 12px;
-  height: 12px;
+  width: 20px;
+  height: 20px;
 }
 
 .file-post__progress-bar {

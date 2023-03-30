@@ -1,17 +1,23 @@
-import React from "react";
-import { publicationUnit } from "../../@types/global";
+import React, { createContext } from "react";
+import { IPublicationUnit } from "../../@types/global";
 import SheetsSlider from "./SheetsSlider";
 
+export const sheetsTypeContext = createContext<string>("");
+
 interface Props {
-  revisionSheetsData: publicationUnit[];
-  exercicesSheetsData: publicationUnit[];
+  revisionsSheetsData: IPublicationUnit[];
+  exercicesSheetsData: IPublicationUnit[];
 }
 
-const Sheets = ({ revisionSheetsData, exercicesSheetsData }: Props) => {
+const Sheets = ({ revisionsSheetsData, exercicesSheetsData }: Props) => {
   return (
     <div className="sheets-wrapper" key={Date.now()}>
-      <SheetsSlider type="revision" sheetsData={revisionSheetsData} />
-      <SheetsSlider type="exercices" sheetsData={exercicesSheetsData} />
+      <sheetsTypeContext.Provider value="revisions">
+        <SheetsSlider type="revision" sheetsData={revisionsSheetsData} />
+      </sheetsTypeContext.Provider>
+      <sheetsTypeContext.Provider value="exercices">
+        <SheetsSlider type="exercices" sheetsData={exercicesSheetsData} />
+      </sheetsTypeContext.Provider>
     </div>
   );
 };

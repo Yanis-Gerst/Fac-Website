@@ -24,4 +24,57 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = client.connect();
 }
 
+export const joinChapterAndPdfAggreation = [
+  {
+    $lookup: {
+      from: "pdfSheets",
+      let: {
+        chapterId: "$_id",
+      },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $and: [
+                {
+                  $eq: ["$$chapterId", "$chapterRef"],
+                },
+                {
+                  $eq: ["revisions", "$type"],
+                },
+              ],
+            },
+          },
+        },
+      ],
+      as: "revisionsSheets",
+    },
+  },
+  {
+    $lookup: {
+      from: "pdfSheets",
+      let: {
+        chapterId: "$_id",
+      },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $and: [
+                {
+                  $eq: ["$$chapterId", "$chapterRef"],
+                },
+                {
+                  $eq: ["exercices", "$type"],
+                },
+              ],
+            },
+          },
+        },
+      ],
+      as: "exercicesSheets",
+    },
+  },
+];
+
 export default clientPromise;

@@ -33,15 +33,18 @@ export const TeachingUnit = ({
             const teachUnitUrl = `${domainTitleUrl}/S${semesterNumber}/${teachUnitTitleUrl}`;
 
             return (
-              <li className="teach-unit-card__item" key={teachUnit.title}>
-                <Link href={`UePage${router.asPath}/${teachUnitUrl}`}>
+              <li key={teachUnit.title}>
+                <Link
+                  href={`UePage${router.asPath}/${teachUnitUrl}`}
+                  className="teach-unit-card__item"
+                >
                   {teachUnit.title}
+                  <Image
+                    src={rightArrow}
+                    className="teach-unit-card__arrow"
+                    alt="une flèche qui pointe vers la droite"
+                  />
                 </Link>
-                <Image
-                  src={rightArrow}
-                  className="teach-unit-card__arrow"
-                  alt="une flèche qui pointe vers la droite"
-                />
               </li>
             );
           }

@@ -10,6 +10,7 @@ import { parseTitleToUrl } from "../../utils/stringMethods";
 import { ObjectId } from "mongodb";
 import fs from "fs";
 import formidable from "formidable";
+import { joinChapterAndPdfAggreation } from "./mangoDb";
 
 const dbName = "Amu";
 const mainCollectionName = "TempDb";
@@ -107,14 +108,7 @@ export const retrieveAllChapters = async (chaptersId: string[]) => {
   }));
 
   return chapterCollection.aggregate([
-    {
-      $lookup: {
-        from: "pdfSheets",
-        localField: "_id",
-        foreignField: "chapterRef",
-        as: "revisionSheets",
-      },
-    },
+    ...joinChapterAndPdfAggreation,
     {
       $match: {
         $or: orQuery,
@@ -122,8 +116,8 @@ export const retrieveAllChapters = async (chaptersId: string[]) => {
     },
     {
       $project: {
-        "revisionSheets.chapterRef": 0,
-        "revisionSheets.data": 0,
+        "revisionsSheets.chapterRef": 0,
+        "revisionsSheets.data": 0,
         "exercicesSheets.chapterRef": 0,
         "exercicesSheets.data": 0,
       },
@@ -142,30 +136,23 @@ export const postPdf = async (
 ) => {
   const chapterCollection = await getCollection<IChapterUnit>("Chapter");
   const pdfCollection = await getCollection<IPublicationUnit>("pdfSheets");
-  const testId = new ObjectId();
+  const pdfId = new ObjectId();
   const content = fs.readFileSync(
     (parsedRequest.files.file as formidable.File).filepath
   );
-  const { title, descriptions, userName } = parsedRequest.fields as {
-    [key: string]: string;
-  };
-
-  chapterCollection.updateOne(
-    {
-      _id: new ObjectId(chapterId),
-    },
-    {
-      $push: { revisionSheets: testId },
-    }
-  );
+  const { title, descriptions, userName, sheetsType } =
+    parsedRequest.fields as {
+      [key: string]: string;
+    };
 
   pdfCollection.insertOne({
-    _id: testId,
+    _id: pdfId,
     title,
     descriptions,
     data: content,
     userName,
     yearOfPublication: 2023,
+    type: sheetsType,
     chapterRef: new ObjectId(chapterId),
   });
 };

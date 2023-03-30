@@ -27,8 +27,20 @@
   }
 }
 
+.sheets-slider-header-container {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
 .sheets-slider-header {
   font-size: 1.25rem;
+}
+
+.sheets-slider-header__upload-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {

@@ -13,15 +13,16 @@ type IPublicationUnit = {
   userName: string;
   yearOfPublication: number;
   data: Buffer;
-  _id: ObjectId;
+  _id: ObjectId | string;
   chapterRef: ObjectId;
+  type: string;
 };
 
 type IChapterUnit = {
   title: string;
-  revisionSheets: ObjectId[];
-  exercicesSheets: ObjectId[];
-  _id: ObjectId;
+  revisionsSheets: IPublicationUnit[];
+  exercicesSheets: IPublicationUnit[];
+  _id: string | ObjectId;
 };
 type ITeachingUnit = {
   title: string;

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { ITeachingUnit } from "../../@types/global";
+import { IChapterUnit, ITeachingUnit } from "../../@types/global";
 import NavBar from "../../layout/NavBar";
 import Sheets from "../../layout/Sheets";
 import { desktopBreakpoint } from "..";
@@ -35,11 +35,12 @@ export const getServerSideProps: GetServerSideProps = async ({
   chapterData = chapterData.map((chapData) => ({
     ...chapData,
     _id: chapData._id.toString(),
-    revisionSheets: parseIdData(chapData.revisionSheets),
+    revisionsSheets: parseIdData(chapData.revisionsSheets),
+    exercicesSheets: parseIdData(chapData.exercicesSheets),
   }));
 
   const data = { title: teachUnitData.title, chapters: chapterData };
-
+  console.log(data);
   return { props: { ueData: data } };
 };
 
@@ -61,6 +62,17 @@ const UePage = ({ ueData }: Props) => {
       window.removeEventListener("resize", setWindowWidthOnRezize);
     };
   }, []);
+
+  const sheetsChildren = (chapter: IChapterUnit) => {
+    return (
+      <ChapterIdContext.Provider value={chapterToRender._id as string}>
+        <Sheets
+          revisionsSheetsData={chapter.revisionsSheets}
+          exercicesSheetsData={chapter.exercicesSheets}
+        />
+      </ChapterIdContext.Provider>
+    );
+  };
   return (
     <>
       <NavBar />
@@ -81,12 +93,7 @@ const UePage = ({ ueData }: Props) => {
                   }
                   index={index}
                 >
-                  <ChapterIdContext.Provider value={chapterToRender._id}>
-                    <Sheets
-                      revisionSheetsData={chapter.revisionSheets}
-                      exercicesSheetsData={chapter.exercicesSheets}
-                    />
-                  </ChapterIdContext.Provider>
+                  {sheetsChildren(chapter)}
                 </ToogleListItem>
               ))}
             </ToogleList>
@@ -102,12 +109,7 @@ const UePage = ({ ueData }: Props) => {
             </SidebarMenu>
             <div className="ue-page-current-chapter">
               <h1 className="ue-page-header text--header3">{ueData.title}</h1>
-              <ChapterIdContext.Provider value={chapterToRender._id}>
-                <Sheets
-                  revisionSheetsData={chapterToRender.revisionSheets}
-                  exercicesSheetsData={chapterToRender.exercicesSheets}
-                />
-              </ChapterIdContext.Provider>
+              {sheetsChildren(chapterToRender)}
             </div>
           </>
         )}
