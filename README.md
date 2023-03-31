@@ -32,6 +32,9 @@ This website only need a database to correctly render and the front-end is dynam
 - To create an accessible experience for everyone 
 - To deploy it in my university
 
+# Example Of Usage
+
+https://user-images.githubusercontent.com/107883257/229053362-ca90314a-7838-46e3-885b-00228e7faeac.mov
 
 # Setup
 
