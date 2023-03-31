@@ -43,10 +43,14 @@ const PopupPost = ({ toClose }: Props) => {
       formData.append(key, data[key as keyof pdfMetaData])
     );
 
-    fetch(`${apiRequestUrl}/${chapterId}`, {
+    const res = await fetch(`${apiRequestUrl}/${chapterId}`, {
       method: "POST",
       body: formData,
     });
+
+    if (res.status === 200) {
+      window.location.reload();
+    }
   };
 
   const handleFileChange = (files: FileList) => {

@@ -25,21 +25,22 @@ const SheetsCard = ({ sheetData, type }: Props) => {
           type === "exercices" && "sheets-card__button-wrapper--exercices"
         }`}
       >
+        {/*  Todo Handle Two Pdf One exercice and One for correction
         {type === "exercices" && (
           <Button
             type="secondary"
             specificStyle="sheets-card__button btn-secondary"
           >
             Correction
-          </Button>
-        )}
+          </Button> 
+        )} */}
 
         <a
           className="sheets-card__button"
           href={`http://localhost:3000/api/posts/${sheetData._id}`}
         >
           <Button type="primary" specificStyle="sheets-card__button">
-            {type === "exercices" ? "Exercices" : "Télécharger"}
+            {type === "exercices" ? "Télécharger" : "Télécharger"}
           </Button>
         </a>
       </div>
