@@ -34,7 +34,7 @@ This website only need a database to correctly render and the front-end is dynam
 
 # Example Of Usage
 
-https://user-images.githubusercontent.com/107883257/233832852-8ca1fb8d-6f99-43d1-90ab-67988d4cd457.mov
+https://user-images.githubusercontent.com/107883257/233833843-88eb192f-5588-4415-adef-676f9d89df16.mov
 
 # Setup
 
