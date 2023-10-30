@@ -1,24 +1,28 @@
-import React, { createContext } from "react";
-import { IPublicationUnit } from "../../@types/global";
+import React from "react";
 import SheetsSlider from "./SheetsSlider";
-
-export const sheetsTypeContext = createContext<string>("");
+import SheetsTypeProvider from "./SheetsTypeContext/SheetsTypeContext";
+import ChapterIdProvider from "./ChapterTypeProvider/ChapterIdProvider";
+import { IChapterUnit } from "../../@types/global";
 
 interface Props {
-  revisionsSheetsData: IPublicationUnit[];
-  exercicesSheetsData: IPublicationUnit[];
+  chapter: IChapterUnit;
 }
 
-const Sheets = ({ revisionsSheetsData, exercicesSheetsData }: Props) => {
+const Sheets = ({ chapter }: Props) => {
+  console.log(chapter);
   return (
-    <div className="sheets-wrapper" key={Date.now()}>
-      <sheetsTypeContext.Provider value="revisions">
-        <SheetsSlider type="revision" sheetsData={revisionsSheetsData} />
-      </sheetsTypeContext.Provider>
-      <sheetsTypeContext.Provider value="exercices">
-        <SheetsSlider type="exercices" sheetsData={exercicesSheetsData} />
-      </sheetsTypeContext.Provider>
-    </div>
+    <>
+      <div className="sheets-wrapper">
+        <ChapterIdProvider id={chapter._id as string}>
+          <SheetsTypeProvider type="revision">
+            <SheetsSlider sheetsData={chapter.revisionsSheets} />
+          </SheetsTypeProvider>
+          <SheetsTypeProvider type="exercices">
+            <SheetsSlider sheetsData={chapter.exercicesSheets} />
+          </SheetsTypeProvider>
+        </ChapterIdProvider>
+      </div>
+    </>
   );
 };
 

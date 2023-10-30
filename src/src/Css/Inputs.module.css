@@ -38,6 +38,11 @@
   border: none;
 }
 
+.inputs input:focus {
+  outline: none;
+  border: none;
+}
+
 .inputs__errors {
   color: #333;
 }

@@ -1,15 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "../../componenents/TextInput";
 import crossIcon from "../../../public/assets/cross.svg";
 import Image from "next/image";
 import Button from "../../componenents/Button";
 import FilePost from "./FilePost";
-import { ChapterIdContext } from "../../pages/UePage/[...teachUnitTitle]";
-import { sheetsTypeContext } from "../Sheets/Sheets";
 import FileInput from "../../componenents/FileInput";
-
-export const apiRequestUrl = "/api/posts";
+import { useSheetsTypeContext } from "../Sheets/SheetsTypeContext/SheetsTypeContext";
+import { useChapterIdContext } from "../Sheets/ChapterTypeProvider/ChapterIdProvider";
+export const apiRequestUrl = "/api/sheets";
 
 const requiredMessage = "lorem ipsum dolor sit amet";
 
@@ -28,8 +27,8 @@ const PopupPost = ({ toClose }: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: { userName: "", descriptions: "", title: "" } });
-  const chapterId = useContext(ChapterIdContext);
-  const sheetsType = useContext(sheetsTypeContext);
+  const sheetsType = useSheetsTypeContext();
+  const chapterId = useChapterIdContext();
   const [currentFile, setCurrentFile] = useState<File | null>(null);
   const [errorFileInput, setErrorFileInput] = useState(false);
 
@@ -43,7 +42,7 @@ const PopupPost = ({ toClose }: Props) => {
       formData.append(key, data[key as keyof pdfMetaData])
     );
 
-    const res = await fetch(`${apiRequestUrl}/${chapterId}`, {
+    const res = await fetch(`/api/postPdf/${chapterId}`, {
       method: "POST",
       body: formData,
     });

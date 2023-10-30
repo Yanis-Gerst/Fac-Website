@@ -1,19 +1,32 @@
 .sidebar-wrapper {
+  position: absolute;
+  transform: translateX(-100%);
+  transition: transform 0.25s;
+
   background-color: #fefefe;
-  padding-left: 0 1rem;
-  transition: transform 0.5s;
+  padding: 1rem;
+  z-index: 100;
+  height: 100vh;
 }
 
+.sidebar-wrapper--visible {
+  transform: translateX(0);
+}
+
+.sidebar-wrapper--exit {
+  transform: translateX(-100%) !important;
+}
 .sidebar-cross {
   cursor: pointer;
+  width: min-content;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  margin-left: auto;
 }
 
 .sidebar-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
   margin-top: 1.5rem;
 }
 
@@ -21,6 +34,7 @@
   opacity: 0.3;
   cursor: pointer;
   font-size: 1rem;
+  padding-bottom: 1.5rem;
 
   &:hover {
     opacity: 1;
@@ -31,4 +45,31 @@
 .sidebar-list__chapter-item--active {
   opacity: 1;
   cursor: auto;
+}
+
+.sidebar-button {
+  position: fixed;
+  left: 0;
+  top: 6.5%;
+  background-color: none;
+  border-radius: 0 8px 8px 0;
+  border: none;
+  padding: 0.25em 0.5em;
+  opacity: 0.5;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: $desktop-breakpoint) {
+  .sidebar-wrapper {
+    position: static;
+    transform: none;
+  }
 }

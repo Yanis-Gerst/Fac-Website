@@ -9,15 +9,19 @@
   margin-left: calc(var(--base-padding) * -1 + var(--base-padding) / 4);
 }
 
-.toogle-item__header svg {
-  fill: none;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+.toogle-item__header img {
+  width: 12px;
+  -ms-flex-negative: none;
+      flex-shrink: none;
   cursor: pointer;
   -webkit-transition: -webkit-transform 0.3s;
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.toogle-chaper-list__toogle-item {
+  cursor: pointer;
 }
 
 .toogle-chaper-list__toogle-item h2 {

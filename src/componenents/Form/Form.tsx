@@ -1,5 +1,6 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { parseTitleToUrl } from "../../utils/stringMethods";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import styles from "./form.module.scss";
 
@@ -16,9 +17,11 @@ interface Props {
 }
 const Form = ({ initOptions, naviguation, nextButton, backButton }: Props) => {
   const [options, setOptions] = useState<IFormOptions[]>(initOptions);
+  const [direction, setDirection] = useState<"left" | "right">("right");
   const [activeOptionIndex, setActiveOptionIndex] = useState(0);
   const [path, setPath] = useState("");
   const [optionsHistory, setOptionsHistory] = useState<IFormOptions[][]>([]);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleClickOnInput = (e: React.MouseEvent<HTMLElement>) => {
     const inputChild: HTMLInputElement =
@@ -32,7 +35,8 @@ const Form = ({ initOptions, naviguation, nextButton, backButton }: Props) => {
     const activeOption = options[activeOptionIndex];
     const newPath = `${path}/${parseTitleToUrl(activeOption.label)}`;
     setPath(newPath);
-
+    setDirection("right");
+    formRef.current?.classList.add(styles["form-transitions-right-exit-imp"]);
     if (activeOption.next.length === 0) naviguation(newPath);
     else setOptions(activeOption.next);
   };
@@ -42,7 +46,8 @@ const Form = ({ initOptions, naviguation, nextButton, backButton }: Props) => {
     if (optionsHistory.length <= 1) return;
     optionsHistory.pop(); //Remove Current Options
     setOptions(optionsHistory.pop() as IFormOptions[]);
-
+    setDirection("left");
+    formRef.current?.classList.add(styles["form-transitions-left-exit-imp"]);
     const newPath = path.split("/");
     newPath.pop(); //remove currentPath to get previous path
     setPath(newPath.join("/"));
@@ -54,47 +59,62 @@ const Form = ({ initOptions, naviguation, nextButton, backButton }: Props) => {
   }, [options]);
 
   return (
-    <form className={styles.form}>
-      <ul className={styles["form__inputs"]}>
-        {options.map((option, index) => {
-          return (
-            <li onClick={handleClickOnInput} key={option.label}>
-              <input
-                type="radio"
-                name="option"
-                value={index}
-                className={styles["form__inputs__input"]}
-              />
-              <label htmlFor={option.label} className="text--base-text">
-                {capitilize(option.label)}
-              </label>
-            </li>
-          );
-        })}
-      </ul>
-      <div
-        className={`${styles["form-button-wrapper"]} ${
-          optionsHistory.length <= 1 &&
-          styles["form-button-wrapper--back-button-disable"]
-        }`}
+    <SwitchTransition mode="out-in">
+      <CSSTransition
+        key={options[0].label}
+        addEndListener={(element, done) => {
+          element.addEventListener("transitionend", done, false);
+        }}
+        classNames={{
+          enter: styles[`form-transitions-${direction}-enter`],
+          enterActive: styles[`form-transitions-${direction}-enter-active`],
+          exit: styles[`form-transitions-${direction}-exit`],
+          exitActive: styles[`form-transitions-${direction}-exit-active`],
+        }}
       >
-        {nextButton ? (
-          React.cloneElement(nextButton, { onClick: handleNextSubmit })
-        ) : (
-          <button
-            className={styles["form__submit-button"]}
-            onClick={handleNextSubmit}
+        <form className={styles.form} ref={formRef}>
+          <ul className={styles["form__inputs"]}>
+            {options.map((option, index) => {
+              return (
+                <li onClick={handleClickOnInput} key={option.label}>
+                  <input
+                    type="radio"
+                    name="option"
+                    value={index}
+                    className={styles["form__inputs__input"]}
+                  />
+                  <label htmlFor={option.label} className="text--base-text">
+                    {capitilize(option.label)}
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+          <div
+            className={`${styles["form-button-wrapper"]} ${
+              optionsHistory.length <= 1 &&
+              styles["form-button-wrapper--back-button-disable"]
+            }`}
           >
-            Next
-          </button>
-        )}
-        {backButton ? (
-          React.cloneElement(backButton, { onClick: handleBackClick })
-        ) : (
-          <button onClick={handleBackClick}>Back</button>
-        )}
-      </div>
-    </form>
+            {nextButton ? (
+              React.cloneElement(nextButton, { onClick: handleNextSubmit })
+            ) : (
+              <button
+                className={styles["form__submit-button"]}
+                onClick={handleNextSubmit}
+              >
+                Next
+              </button>
+            )}
+            {backButton ? (
+              React.cloneElement(backButton, { onClick: handleBackClick })
+            ) : (
+              <button onClick={handleBackClick}>Back</button>
+            )}
+          </div>
+        </form>
+      </CSSTransition>
+    </SwitchTransition>
   );
 };
 

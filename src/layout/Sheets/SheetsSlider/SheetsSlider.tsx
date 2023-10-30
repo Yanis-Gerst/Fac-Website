@@ -4,11 +4,10 @@ import SheetsCard from "../SheetsCard";
 import EmptySheets from "../EmptySheets";
 import SheetsSliderHeader from "./SheetsSliderHeader";
 interface Props {
-  type: "exercices" | "revision";
   sheetsData: IPublicationUnit[];
 }
 
-const SheetsSlider = ({ sheetsData, type }: Props) => {
+const SheetsSlider = ({ sheetsData }: Props) => {
   const haveSheets = sheetsData.length > 0;
   return (
     <>
@@ -16,11 +15,7 @@ const SheetsSlider = ({ sheetsData, type }: Props) => {
       {haveSheets ? (
         <div className="sheets-slider">
           {sheetsData.map((sheet) => (
-            <SheetsCard
-              key={sheet._id as string}
-              type={type}
-              sheetData={sheet}
-            />
+            <SheetsCard key={sheet._id as string} sheetData={sheet} />
           ))}
         </div>
       ) : (

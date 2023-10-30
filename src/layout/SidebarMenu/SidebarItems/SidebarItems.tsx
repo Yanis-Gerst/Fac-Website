@@ -22,11 +22,7 @@ const SidebarItems = ({
           key={chapter.title}
           onClick={() => setActiveItemIndex(index)}
         >
-          <details>
-            <summary>
-              Chaptire {index}: {chapter.title}
-            </summary>
-          </details>
+          Chaptire {index}: {chapter.title}
         </div>
       ))}
     </>

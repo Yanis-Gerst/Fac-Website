@@ -7,6 +7,7 @@
   padding-bottom: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  animation: popupWindow 0.4s ease-out;
 }
 
 .popup__btn {
@@ -122,5 +123,19 @@
   .white-bar {
     background-color: #fff;
     flex-grow: 1;
+  }
+}
+
+@keyframes popupWindow {
+  0% {
+    transform: scale(0.01);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.035);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
   }
 }

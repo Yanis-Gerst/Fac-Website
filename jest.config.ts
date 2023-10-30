@@ -23,6 +23,9 @@ const config: Config = {
     "^.+\\.tsx$": "ts-jest",
     "^.+\\.ts$": "ts-jest",
   },
+
+  preset: "@shelf/jest-mongodb",
+  setupFiles: ["./__test__/setup/jest.setup.ts"],
 };
 
 export default config;

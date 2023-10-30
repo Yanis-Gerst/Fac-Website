@@ -43,6 +43,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const CursusPage = ({ cursusData }: Props) => {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
+  if (cursusData.domainSection.length === 0) return <h1>Working on it ...</h1>;
   return (
     <>
       <NavBar />

@@ -4,12 +4,16 @@
   gap: calc(var(--base-padding) / 4);
   margin-left: calc(var(--base-padding) * -1 + var(--base-padding) / 4);
 
-  svg {
-    fill: none;
-    flex-shrink: 0;
+  img {
+    width: 12px;
+    flex-shrink: none;
     cursor: pointer;
     transition: transform 0.3s;
   }
+}
+
+.toogle-chaper-list__toogle-item {
+  cursor: pointer;
 }
 
 .toogle-chaper-list__toogle-item h2 {

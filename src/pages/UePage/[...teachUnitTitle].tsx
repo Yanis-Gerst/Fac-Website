@@ -1,18 +1,16 @@
-import React, { createContext, useEffect, useState } from "react";
-import { IChapterUnit, ITeachingUnit } from "../../@types/global";
+import React, { useEffect, useState } from "react";
+import { ITeachingUnit } from "../../@types/global";
 import NavBar from "../../layout/NavBar";
-import Sheets from "../../layout/Sheets";
 import { desktopBreakpoint } from "..";
 import SidebarMenu from "../../layout/SidebarMenu";
 import SidebarItems from "../../layout/SidebarMenu/SidebarItems";
 import { GetServerSideProps } from "next/types";
-import ToogleList from "../../componenents/ToogleList";
-import ToogleListItem from "../../componenents/ToogleList/ToogleListItem";
 import {
   retrieveAllChapters,
   retrieveAmuDataFromUrl,
 } from "../../lib/db/amuData";
 import { WithId } from "mongodb";
+import Sheets from "../../layout/Sheets/Sheets";
 
 interface Props {
   ueData: ITeachingUnit;
@@ -32,6 +30,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const teachUnitData = await retrieveAmuDataFromUrl(currentUrl);
   const chapterDataCursor = await retrieveAllChapters(teachUnitData.chapters);
   let chapterData = await chapterDataCursor.toArray();
+  console.log(chapterData[0].revisionsSheets);
   chapterData = chapterData.map((chapData) => ({
     ...chapData,
     _id: chapData._id.toString(),
@@ -40,11 +39,8 @@ export const getServerSideProps: GetServerSideProps = async ({
   }));
 
   const data = { title: teachUnitData.title, chapters: chapterData };
-  console.log(data);
   return { props: { ueData: data } };
 };
-
-export const ChapterIdContext = createContext<string>("");
 
 const UePage = ({ ueData }: Props) => {
   const [activeChapterIndex, setActiveChapterIndex] = useState<number>(0);
@@ -63,56 +59,33 @@ const UePage = ({ ueData }: Props) => {
     };
   }, []);
 
-  const sheetsChildren = (chapter: IChapterUnit) => {
-    return (
-      <ChapterIdContext.Provider value={chapterToRender._id as string}>
-        <Sheets
-          revisionsSheetsData={chapter.revisionsSheets}
-          exercicesSheetsData={chapter.exercicesSheets}
-        />
-      </ChapterIdContext.Provider>
-    );
-  };
   return (
     <>
       <NavBar />
       <section className="ue-page-wrapper">
-        {windowWidth < desktopBreakpoint ? (
-          <>
-            <h1 className="ue-title text--header4">{ueData.title}</h1>
-            <ToogleList>
-              {ueData.chapters.map((chapter, index) => (
-                <ToogleListItem
-                  key={chapter.title}
-                  title={
-                    <details className="text--semi-header4">
-                      <summary>
-                        Chaptire {index}: {chapter.title}
-                      </summary>
-                    </details>
-                  }
-                  index={index}
-                >
-                  {sheetsChildren(chapter)}
-                </ToogleListItem>
-              ))}
-            </ToogleList>
-          </>
-        ) : (
-          <>
-            <SidebarMenu>
-              <SidebarItems
-                chapters={ueData.chapters}
-                activeItemIndex={activeChapterIndex}
-                setActiveItemIndex={setActiveChapterIndex}
-              />
-            </SidebarMenu>
-            <div className="ue-page-current-chapter">
-              <h1 className="ue-page-header text--header3">{ueData.title}</h1>
-              {sheetsChildren(chapterToRender)}
-            </div>
-          </>
-        )}
+        <>
+          <SidebarMenu breakpoint={desktopBreakpoint}>
+            <SidebarItems
+              chapters={ueData.chapters}
+              activeItemIndex={activeChapterIndex}
+              setActiveItemIndex={setActiveChapterIndex}
+            />
+          </SidebarMenu>
+          <div className="ue-page-current-chapter">
+            <h1
+              className={`ue-page-header text--header${
+                windowWidth > desktopBreakpoint ? "3" : "5"
+              }`}
+            >
+              {ueData.title}
+            </h1>
+            <h2 className="ue-page-chapter-title text--header6">
+              {windowWidth < desktopBreakpoint &&
+                `Chapitre ${activeChapterIndex} : ${chapterToRender.title}`}
+            </h2>
+            <Sheets chapter={chapterToRender} />
+          </div>
+        </>
       </section>
     </>
   );

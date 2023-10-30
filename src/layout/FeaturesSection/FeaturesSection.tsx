@@ -17,11 +17,12 @@ const FeaturesSection = ({ featuresList }: Props) => {
     const updateWindowStateOnResize = () => {
       setWindowWidth(window.innerWidth);
     };
+    updateWindowStateOnResize();
     window.addEventListener("resize", updateWindowStateOnResize);
     return () => {
       window.removeEventListener("resize", updateWindowStateOnResize);
     };
-  });
+  }, []);
 
   return (
     <>
@@ -31,8 +32,14 @@ const FeaturesSection = ({ featuresList }: Props) => {
         </h1>
         {windowWidth > desktopBreakpoint ? (
           <FeatureGrid>
-            {featuresList.map((feature: IFeature) => {
-              return <FeatureGridItem key={feature.title} feature={feature} />;
+            {featuresList.map((feature: IFeature, index) => {
+              return (
+                <FeatureGridItem
+                  key={feature.title}
+                  feature={feature}
+                  index={index}
+                />
+              );
             })}
           </FeatureGrid>
         ) : (

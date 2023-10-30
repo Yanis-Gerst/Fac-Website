@@ -25,6 +25,7 @@ $spacing: 1rem;
 .hero-section__illustration {
   width: 100%;
   height: auto;
+  animation: breathing 15s infinite;
 }
 
 .hero-section {
@@ -116,5 +117,24 @@ $spacing: 1rem;
 
   .hidden-on-desktop {
     display: none !important;
+  }
+}
+
+$breath-max: 0.93;
+@keyframes breathing {
+  0% {
+    transform: scale(0.9);
+  }
+  25% {
+    transform: scale($breath-max);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  75% {
+    transform: scale($breath-max);
+  }
+  100% {
+    transform: scale(0.9);
   }
 }

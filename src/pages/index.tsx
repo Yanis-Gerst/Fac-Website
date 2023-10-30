@@ -15,7 +15,7 @@ import { IFormOptions } from "../componenents/Form/Form";
 
 export const getStaticProps: GetStaticProps = async () => {
   const formOptions = createInitFormOptions(await getAllCursus());
-
+  console.dir(formOptions[0].next);
   return {
     props: {
       formOptions,

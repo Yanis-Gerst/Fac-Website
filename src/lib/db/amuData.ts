@@ -41,6 +41,7 @@ export const getAllCursus = async () => {
     mainCollectionName
   );
   const allCursus = await cursusCollection.find().sort({ title: 1 }).toArray();
+  console.log(allCursus[0].options);
   return allCursus;
 };
 
@@ -134,9 +135,9 @@ export const postPdf = async (
   chapterId: string,
   parsedRequest: IParseRequest
 ) => {
-  const chapterCollection = await getCollection<IChapterUnit>("Chapter");
   const pdfCollection = await getCollection<IPublicationUnit>("pdfSheets");
   const pdfId = new ObjectId();
+  const chapterIdMongo = new ObjectId(chapterId);
   const content = fs.readFileSync(
     (parsedRequest.files.file as formidable.File).filepath
   );
@@ -153,6 +154,6 @@ export const postPdf = async (
     userName,
     yearOfPublication: 2023,
     type: sheetsType,
-    chapterRef: new ObjectId(chapterId),
+    chapterRef: chapterIdMongo,
   });
 };

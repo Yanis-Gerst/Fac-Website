@@ -1,0 +1,21 @@
+.words-slider {
+  height: 1em;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  overflow: hidden;
+  margin-right: 0.25em;
+}
+
+.words-slider > * {
+  -webkit-animation: wordsSlide 5s infinite ease-out;
+          animation: wordsSlide 5s infinite ease-out;
+}
+/*# sourceMappingURL=wordsSlider.module.css.map */

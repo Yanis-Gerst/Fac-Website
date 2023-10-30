@@ -1,0 +1,12 @@
+.words-slider {
+  height: 1em;
+  display: inline-flex;
+  flex-flow: column;
+  width: fit-content;
+  overflow: hidden;
+  margin-right: 0.25em;
+
+  & > * {
+    animation: wordsSlide 5s infinite ease-out;
+  }
+}

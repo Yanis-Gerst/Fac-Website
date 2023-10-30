@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACZ,MAAM,EAAE,GAAG;EACX,OAAO,EAAE,WAAW;EACpB,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,WAAW;EAClB,QAAQ,EAAE,MAAM;EAChB,YAAY,EAAE,MAAM;CAKrB;;AAXD,AAQE,aARW,GAQP,CAAC,CAAC;EACJ,SAAS,EAAE,+BAA+B;CAC3C",
+    "sources": [
+        "../../componenents/WordsSlider/wordsSlider.module.scss"
+    ],
+    "names": [],
+    "file": "wordsSlider.module.css"
+}

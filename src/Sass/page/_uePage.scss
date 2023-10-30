@@ -1,5 +1,14 @@
 .ue-page-wrapper {
-  padding: 0 var(--base-padding);
+  margin-top: 3rem;
+  padding: 0 calc(var(--base-padding));
+}
+
+.ue-page-current-chapter {
+  margin: 0 auto;
+}
+
+.ue-page-header {
+  margin-bottom: 1rem;
 }
 
 .ue-title {
@@ -12,7 +21,7 @@
     display: flex;
     flex-flow: row;
     padding: 0 calc(var(--base-padding) * -1);
-
+    margin-top: 0;
     width: 100%;
 
     align-items: flex-start;
@@ -35,6 +44,7 @@
     text-align: center;
     background-color: #f8f9fa;
     padding: 2.25rem 0;
+    margin-bottom: 0;
   }
 
   .sidebar-list__item {

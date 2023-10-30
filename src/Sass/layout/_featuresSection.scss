@@ -37,6 +37,8 @@
   flex-flow: column;
   align-items: center;
   gap: 1rem;
+  opacity: 0;
+
   p {
     max-width: 480px;
   }
@@ -46,6 +48,14 @@
   }
 }
 
+.feature-grid__item--visible {
+  animation: featuresFadeIn 0.4s ease-out forwards;
+}
+
+.feature-grid__item--visible-right {
+  animation-delay: 0.15s;
+}
+
 @media screen and (min-width: $tablet-breakpoint) {
   .feature-slider__card h2 {
     width: 550px;
@@ -53,5 +63,15 @@
   .feature-slider__card > * {
     max-width: 550px;
     margin: 0 auto;
+  }
+}
+
+@keyframes featuresFadeIn {
+  from {
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

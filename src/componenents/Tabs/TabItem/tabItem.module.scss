@@ -2,11 +2,18 @@
   color: var(--disabled-text-color);
   margin-bottom: 2.5rem;
   cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: var(--primary-color);
+    opacity: 0.6;
+  }
 }
 
 .tabs__item--active {
   color: var(--primary-color);
-  position: relative;
+  opacity: 1 !important;
+
   &::after {
     content: "";
     display: block;
@@ -18,5 +25,20 @@
 
     left: calc(50% - 25%);
     background-color: var(--primary-color);
+    animation: popup 0.3s;
+  }
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0.01);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
   }
 }

@@ -7,6 +7,7 @@ interface Props {
   children: React.ReactNode;
   pagination?: boolean;
 }
+
 const FeaturesSection = ({ children, pagination = true }: Props) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const sliderElement = useRef<HTMLDivElement>(null);

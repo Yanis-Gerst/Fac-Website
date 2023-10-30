@@ -7,5 +7,6 @@
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 2rem;
+  min-height: 101vh;
 }
 /*# sourceMappingURL=toogleList.module.css.map */

@@ -19,11 +19,15 @@ export const TeachingUnit = ({
 }: Props) => {
   const router = useRouter();
   return (
-    <div className="teach-unit-card">
+    <div
+      className={`teach-unit-card ${
+        semesterNumber == 2 && "teach-unit-card--2"
+      }`}
+    >
       <h2 className="teach-unit-card__header text--header6">
         Semetre {semesterNumber}
       </h2>
-      <ul className="teach-unit-card__list-item">
+      <ul className="teach-unit-card__list-item" key={Date.now()}>
         {domains[activeTabIndex][`teachingUnitsS${semesterNumber}`].map(
           (teachUnit) => {
             const teachUnitTitleUrl = parseTitleToUrl(teachUnit.title);

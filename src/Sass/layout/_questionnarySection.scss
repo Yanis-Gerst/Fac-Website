@@ -43,9 +43,11 @@
   .questionnary-section {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 430px 500px;
+    grid-template-columns: 500px 500px;
     grid-template-rows: min 1fr;
     justify-content: center;
+
+    justify-items: center;
   }
 
   .questionnary-section__header {

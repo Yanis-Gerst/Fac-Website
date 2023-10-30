@@ -10,9 +10,13 @@ interface Props {
 const Pagination = ({ activeIndex, slideNumber, sliderElement }: Props) => {
   const scrollToIndexImg = (index: number) => {
     if (!sliderElement.current) return;
-    sliderElement.current.scrollLeft =
-      sliderElement.current.offsetWidth * index;
+    const coordXOfElement = sliderElement.current.offsetWidth * index;
+    sliderElement.current.scrollTo({
+      left: coordXOfElement,
+      behavior: "smooth",
+    });
   };
+
   return (
     <div className={styles["pagination"]}>
       {[...Array(slideNumber)].map((elt, index) => {

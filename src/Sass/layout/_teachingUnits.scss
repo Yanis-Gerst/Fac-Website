@@ -28,6 +28,7 @@ $max-width-cursusPage-desktop: 700px;
 .teach-unit-card__list-item {
   display: flex;
   flex-direction: column;
+  animation: test 0.3s ease-out;
 
   li:not(:last-child) {
     border-bottom: 1px solid var(--stroke-light);
@@ -78,5 +79,14 @@ $max-width-cursusPage-desktop: 700px;
   .teach-unit-card__item {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+  }
+}
+
+@keyframes test {
+  from {
+    transform: translateX(0.4%);
+  }
+  to {
+    transform: translateX(0%);
   }
 }

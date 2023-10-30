@@ -2,11 +2,17 @@
   color: var(--disabled-text-color);
   margin-bottom: 2.5rem;
   cursor: pointer;
+  position: relative;
+}
+
+.tabs__item:hover {
+  color: var(--primary-color);
+  opacity: 0.6;
 }
 
 .tabs__item--active {
   color: var(--primary-color);
-  position: relative;
+  opacity: 1 !important;
 }
 
 .tabs__item--active::after {
@@ -19,5 +25,41 @@
   border-radius: 8px;
   left: calc(50% - 25%);
   background-color: var(--primary-color);
+  -webkit-animation: popup 0.3s;
+          animation: popup 0.3s;
+}
+
+@-webkit-keyframes popup {
+  0% {
+    -webkit-transform: scale(0.01);
+            transform: scale(0.01);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scale(1.08);
+            transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes popup {
+  0% {
+    -webkit-transform: scale(0.01);
+            transform: scale(0.01);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scale(1.08);
+            transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 /*# sourceMappingURL=tabItem.module.css.map */

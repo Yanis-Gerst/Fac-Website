@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Button from "../../componenents/Button/Button";
 import heroIllustration from "../../../public/assets/heroIllustration.svg";
 import Image from "next/image";
+import WordsSlider from "../../componenents/WordsSlider/WordsSlider";
 
 const HeroSection = () => {
   const heroSection = useRef<HTMLDivElement>(null);
@@ -38,8 +39,11 @@ const HeroSection = () => {
       <div className="hero-text">
         <h1 className="hero-header" ref={heroHeader}>
           Lorem ipsum dolor sit amet,{" "}
-          <span className="text--color-primary">consectetur</span> adipiscing
-          elit.
+          <WordsSlider
+            wordsArray={["Caelum", "Mundus", "Verbum"]}
+            wordsStyle="text--color-primary"
+          />
+          adipiscing elit.
         </h1>
 
         <div className="hero-section" ref={heroSection}>

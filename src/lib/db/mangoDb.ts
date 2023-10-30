@@ -40,7 +40,7 @@ export const joinChapterAndPdfAggreation = [
                   $eq: ["$$chapterId", "$chapterRef"],
                 },
                 {
-                  $eq: ["revisions", "$type"],
+                  $eq: ["revision", "$type"],
                 },
               ],
             },

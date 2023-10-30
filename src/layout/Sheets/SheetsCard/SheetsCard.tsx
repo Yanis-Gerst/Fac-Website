@@ -2,15 +2,16 @@ import React from "react";
 import { IPublicationUnit } from "../../../@types/global";
 import Button from "../../../componenents/Button";
 import SheetsCardIcons from "./SheetsCardIcons";
+import { useSheetsTypeContext } from "../SheetsTypeContext/SheetsTypeContext";
 
 interface Props {
   sheetData: IPublicationUnit;
-  type: "revision" | "exercices";
 }
 
-const SheetsCard = ({ sheetData, type }: Props) => {
+const SheetsCard = ({ sheetData }: Props) => {
+  const sheetsType = useSheetsTypeContext();
   return (
-    <div className="sheets-card-wrapper">
+    <div className={`sheets-card-wrapper sheets-card-wrapper--${sheetsType}`}>
       <h4 className="sheets-card-header text--semi-header6">
         {sheetData.title}
       </h4>
@@ -20,11 +21,7 @@ const SheetsCard = ({ sheetData, type }: Props) => {
         like={0}
         yearOfPublication={sheetData.yearOfPublication}
       />
-      <div
-        className={`sheets-card__button-wrapper ${
-          type === "exercices" && "sheets-card__button-wrapper--exercices"
-        }`}
-      >
+      <div className={`sheets-card__button-wrapper`}>
         {/*  Todo Handle Two Pdf One exercice and One for correction
         {type === "exercices" && (
           <Button
@@ -37,10 +34,10 @@ const SheetsCard = ({ sheetData, type }: Props) => {
 
         <a
           className="sheets-card__button"
-          href={`http://localhost:3000/api/posts/${sheetData._id}`}
+          href={`http://localhost:3000/api/sheets/${sheetData._id}`}
         >
           <Button type="primary" specificStyle="sheets-card__button">
-            {type === "exercices" ? "Télécharger" : "Télécharger"}
+            {sheetsType === "exercices" ? "Télécharger" : "Télécharger"}
           </Button>
         </a>
       </div>
